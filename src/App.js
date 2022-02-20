@@ -1,21 +1,25 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router} from "react-router-dom";
+
+import TimeScroller from './components/TimeScroller'
+import YearPage from  './components/YearPage'
+
 
 const App = () => {
-	return(
-		<Router>
-		<div>
-		<div><h1>TimeBy</h1></div>
-		<div>
-		<Link to= "/2018">2018</Link>
-		<Link to= "/2019">2019</Link>
-		<Link to= "/2020">2020</Link>
-		<Link to= "/2021">2021</Link>
-		<Link to= "/">2022</Link>
-		</div>
-		</div>
-		</Router>
-	)
+  const time = []
+  for(let i = 1980; i <= 2022; i++){
+    time.push(i)
+  }
+  return(
+    <Router>
+
+      <div style = {{"position" : 'absolute'}}>
+        <h1>TimeBy</h1>
+        <TimeScroller time = {time}/>
+      </div>
+      <YearPage time = {time}/>
+    </Router>
+  )
 }
 
 export default App

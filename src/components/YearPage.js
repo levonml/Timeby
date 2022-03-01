@@ -10,7 +10,7 @@ const YearPage = ({time}) => (
       {
         time.map((year,key) =>{
           return(
-            <Route exact path = {`${year}`} key = {key} element = {<div  style = {{'margin': 300, 'display': 'inline-block'}}>{year}</div>}>
+            <Route exact path = {`${year}`} key = {key} element = {<h1  style = {{'margin': 300, 'display': 'inline-block'}}>{year}</h1>}>
             </Route>
          
           )

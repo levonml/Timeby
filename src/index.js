@@ -1,14 +1,22 @@
 import React from "react"
 import ReactDOM from 'react-dom'
 //import { BrowserRouter } from "react-router-dom";
-//import { Provider } from "react-redux";
+import { createStore, combineReducers } from 'redux'
+import { Provider } from "react-redux";
 
 import       App from './App'
-//import makeStore from "./redux/store";
+import userReducer from "./redux/reducers/userReducer";
+
+const reducer = combineReducers({
+  currentUser: userReducer,
+})
+const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store = {store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

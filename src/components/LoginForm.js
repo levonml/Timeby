@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate} from "react-router-dom"
 import {signIn} from '../redux/actions'
+import contentService from '../services/contentService'
 
 const LoginForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
@@ -25,6 +26,8 @@ const LoginForm = () =>{
       const user = await  loginService.login({login, password})
       dispatch(signIn(user.data.Username))
       navigate(`/${user.data.Username}`)
+      console.log("fvfssfssssfs tookeeeen ", user.data);
+      contentService.setToken(user.data.Token)
       return
     }catch(err){alert(err)}
     setLogin("")

@@ -8,3 +8,12 @@ export const signIn = (user) =>{
     }
   )
 }
+export const setText = (textObj) =>{
+  console.log("lllllllllllllllllllllll", textObj);
+  return(
+    {
+      type: actions.SETTEXT, 
+      payload: textObj
+    }
+  )
+}

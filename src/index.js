@@ -6,9 +6,11 @@ import { Provider } from "react-redux";
 
 import       App from './App'
 import userReducer from "./redux/reducers/userReducer";
+import contentReduser from "./redux/reducers/contentReducer"
 
 const reducer = combineReducers({
   currentUser: userReducer,
+  currentText: contentReduser
 })
 const store = createStore(reducer)
 

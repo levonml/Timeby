@@ -2,10 +2,11 @@ import React from "react"
 import signupService from "../services/signupService"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
 const SignupForm = () =>{
-  const style = {"margin": 100}
-  const [login, setLogin] = useState("")
+  const style = {"marginTop": 200, "marginLeft": 500 }
+  const [userName, setLogin] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
   const [surname, setSurname] = useState("")
@@ -27,7 +28,7 @@ const SignupForm = () =>{
   const signupHandler = async (event) =>{
     event.preventDefault()
     try{
-      const user = await  signupService.signup({login, password, name, surname})
+      const user = await  signupService.signup({userName, password, name, surname})
       dispatch({type: "LOGGED", payload: user.data.User})
     }catch(err){alert(err)}
     setLogin("")
@@ -37,14 +38,16 @@ const SignupForm = () =>{
   }
 
   return(
-    <form style = {style} onSubmit = {signupHandler}>
-      <div>Name<input type="text" value={name} onChange={nameHandler}></input></div>
-      <div>Surname<input type="text" value={surname} onChange={surnameHandler}></input></div>
-      <div>login<input type="text" value={login} onChange={userNameHandler}></input></div>
-      <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
-      <button type="submit">Sign up</button>
-    </form>
-		
+    <div>      
+      <form style = {style} onSubmit = {signupHandler}>
+        <div>name<input type="text" value={name} onChange={nameHandler}></input></div>
+        <div>surname<input type="text" value={surname} onChange={surnameHandler}></input></div>
+        <div>username<input type="text" value={userName} onChange={userNameHandler}></input></div>
+        <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
+        <button type="submit">Sign up</button>
+        <Link to="/">Back</Link>
+      </form>
+    </div>
   )
 }
 export default SignupForm

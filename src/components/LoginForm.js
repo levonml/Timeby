@@ -2,9 +2,10 @@ import React from "react"
 import loginService from "../services/loginService"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
 const LoginForm = () =>{
-  const style = {"margin": 100}
+  const style = {"marginTop": 200, "marginLeft": 500 }
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
 
@@ -26,12 +27,16 @@ const LoginForm = () =>{
   }
 
   return(
-    <form style = {style} onSubmit = {loginHandler}>
-      <div>login<input type="text" value={login} onChange={userNameHandler}></input></div>
-      <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
-      <button type="submit">Login</button>
-    </form>
-		
+    <div>
+      
+      <form style = {style} onSubmit = {loginHandler}>
+        <div>login<input type="text" value={login} onChange={userNameHandler}></input></div>
+        <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
+        <button type="submit">Login</button>
+        <Link to="/">Back</Link>
+
+      </form>
+    </div>
   )
 }
 export default LoginForm

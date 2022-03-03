@@ -14,7 +14,7 @@ const App = () => {
   }
   return(
     <div>
-      <Routes>
+      <Routes suppressNoMatchWarning={true}>
         <Route path = "/*" element = { 
           <>
             <LoginButton />
@@ -28,6 +28,7 @@ const App = () => {
       <Routes>
         <Route path = "login" element = {<LoginForm/>}></Route>
         <Route path = "signup" element = {<SignupForm/>}></Route>
+
       </Routes>
     </div>
    

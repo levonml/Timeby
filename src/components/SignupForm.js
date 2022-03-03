@@ -2,7 +2,7 @@ import React from "react"
 import signupService from "../services/signupService"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link,  useNavigate } from "react-router-dom"
 
 const SignupForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
@@ -12,7 +12,7 @@ const SignupForm = () =>{
   const [surname, setSurname] = useState("")
 
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const userNameHandler = event => {
     setLogin(event.target.value)
   }
@@ -30,11 +30,21 @@ const SignupForm = () =>{
     try{
       const user = await  signupService.signup({userName, password, name, surname})
       dispatch({type: "LOGGED", payload: user.data.User})
+      console.log("loggged in user onnistu", user.data)
+      alert("you have signed up successfully")
+      navigate("/")
+      return
     }catch(err){alert(err)}
     setLogin("")
     setPassword("")
     setName("")
     setSurname("")
+ 
+
+
+    
+    
+    
   }
 
   return(

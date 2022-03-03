@@ -2,7 +2,8 @@ import React from "react"
 import loginService from "../services/loginService"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
+import {signIn} from '../redux/actions'
 
 const LoginForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
@@ -10,6 +11,7 @@ const LoginForm = () =>{
   const [password, setPassword] = useState("")
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const userNameHandler = event => {
     setLogin(event.target.value)
@@ -19,9 +21,12 @@ const LoginForm = () =>{
   }
   const loginHandler = async (event) =>{
     event.preventDefault()
-    const user = await  loginService.login({login, password})
-    dispatch({type: "LOGGED", payload: user.data.User})
-
+    try{
+      const user = await  loginService.login({login, password})
+      dispatch(signIn(user.data.Username))
+      navigate(`/${user.data.Username}`)
+      return
+    }catch(err){alert(err)}
     setLogin("")
     setPassword("")
   }

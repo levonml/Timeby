@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import contentService from "../services/contentService";
+import signupService from "../services/signupService";
 
 import { setText } from "../redux/actions";
 
@@ -13,16 +14,16 @@ const CurrentUserPage = () =>{
 
   const currentUser = useSelector(state => state.currentUser.userName)
   useEffect(async () => {
-    const text = await contentService.getAll()
-    dispatch(setText(text))
+    const text = await signupService.getOne(currentUser)
+    dispatch(setText(text.notes))
   }, [])
   const createStory = async (event) =>{
     event.preventDefault()
     try{
       await  contentService.addText({text:event.target.text.value})
-      const text = await contentService.getAll()
+      const text = await signupService.getOne(currentUser)
       console.log("ddddddddddddddddddd", text)
-      dispatch(setText(text))
+      dispatch(setText(text.notes))
       // navigate(`/${user.data.Username}`)
       // return
     }catch(err){alert(err)}

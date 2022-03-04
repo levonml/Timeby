@@ -1,6 +1,6 @@
 import React from "react"
 import loginService from "../services/loginService"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate} from "react-router-dom"
 import {signIn} from '../redux/actions'
@@ -24,16 +24,32 @@ const LoginForm = () =>{
     event.preventDefault()
     try{
       const user = await  loginService.login({login, password})
-      dispatch(signIn(user.data.Username))
+      window.localStorage.setItem(
+        'loggedNoteappUser', JSON.stringify(user)
+      ) 
+      const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+      if (loggedUserJSON) {
+        const user = JSON.parse(loggedUserJSON)
+        dispatch(signIn(user.data.Username))
+      }
       navigate(`/${user.data.Username}`)
       console.log("fvfssfssssfs tookeeeen ", user.data);
-      contentService.setToken(user.data.Token)
       return
     }catch(err){alert(err)}
     setLogin("")
     setPassword("")
   }
-
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      // setUser(user)
+      console.log("token from storage", user.data.Token)
+      contentService.setToken(user.data.Token)
+      dispatch(signIn(user.data.Username))
+     
+    }
+  }, [])
   return(
     <div>
       

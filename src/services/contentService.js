@@ -1,7 +1,8 @@
 import axios from "axios";
 
 
-const baseUrl = 'http://localhost:3001/note'
+//const baseUrl = 'https://timeby.herokuapp.com/note'
+const baseUrl = "http://localhost:3001/note"
 
 
 const getAll = async () => {

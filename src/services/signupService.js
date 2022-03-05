@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseUrl = 'https://timeby.herokuapp.com/signup'
-const baseUrl = "http://localhost:3001/signup"
+const baseUrl = 'https://timeby.herokuapp.com/signup'
+//const baseUrl = "http://localhost:3001/signup"
 const signup = async (credentials) => {
   console.log('credentials ', credentials)
   try{

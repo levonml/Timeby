@@ -25,14 +25,16 @@ const LoginForm = () =>{
     try{
       const user = await  loginService.login({login, password})
       window.localStorage.setItem(
-        'loggedNoteappUser', JSON.stringify(user)
+        'loggedTimebyUser', JSON.stringify(user)
       ) 
-      const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+      /* const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
       if (loggedUserJSON) {
-        const user = JSON.parse(loggedUserJSON)
-        dispatch(signIn(user.data.Username))
-      }
+        const currUser = JSON.parse(loggedUserJSON)
+	  } */
+      dispatch(signIn(user.data.Username))
       navigate(`/${user.data.Username}`)
+      
+      
       console.log("fvfssfssssfs tookeeeen ", user.data);
       return
     }catch(err){alert(err)}
@@ -40,7 +42,7 @@ const LoginForm = () =>{
     setPassword("")
   }
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       // setUser(user)
@@ -49,7 +51,7 @@ const LoginForm = () =>{
       dispatch(signIn(user.data.Username))
      
     }
-  }, [])
+  }, []) 
   return(
     <div>
       

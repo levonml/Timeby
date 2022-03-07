@@ -25,4 +25,10 @@ const addText = async (text) => {
     return newContent.data.text
   }catch(error){alert("problem accured while adding text")}
 }
-export default {addText,  getAll}
+const deleteOneTextSection = async (id)=>{
+  try{
+    const response = await axios.delete(`baseUrl/${id}`)
+    return(response)
+  }catch(err){alert(err)}
+}
+export default {addText,  getAll, deleteOneTextSection}

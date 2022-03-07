@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import  {createText, initialize} from "../redux/reducers/contentReducer";
+import Text from './Text'
 
 const CurrentUserPage = () =>{
   const dispatch = useDispatch()
@@ -30,15 +31,7 @@ const CurrentUserPage = () =>{
   const text =  useSelector(state =>state.currentText)
   console.log("text from selector = ", text)
   console.log("textlllll", text);
-  const style = {"background": "gray", 
-    'padding': 20, 
-    "marginTop": 5, 
-    "marginLeft":'auto',
-    "marginRight":'auto',
-    'color': 'white',
-    'text': 'center',
-    'width': 400
-  }
+ 
   return(
     <>
       <h2>Hello {currentUser}</h2>
@@ -47,7 +40,7 @@ const CurrentUserPage = () =>{
         <div>create text <input name = "text"></input></div>
         <button type="submit">post</button>
       </form>
-      {Array.isArray(text) ? text.map((el, key) => (<div style = {style}key = {key}>{el.text}</div>)) : <></>}
+      {Array.isArray(text) ? text.map((el, key) => (<Text el = {el} key = {key}/>)) : <></>}
     </>
   )
 }

@@ -36,4 +36,13 @@ export const createText = (obj, currentUser) => {
     }catch(err){alert(err)}
   }
 }
+export const deleteOneTextSection = (id) => {
+  return async dispatch => {
+    try{
+      await contentService.deleteOneTextSection(id)
+      const textList = await contentService.getAll()
+      dispatch(setText(textList))
+    }catch(err){alert(`deleteOneTextSection ${err}`)}
+  }
+}
 export default contentSlice.reducer

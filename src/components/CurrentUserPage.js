@@ -2,40 +2,48 @@ import React from "react";
 //import Header from "./Header";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { useNavigate } from "react-router-dom";
-import contentService from "../services/contentService";
-import signupService from "../services/signupService";
+import { useNavigate } from "react-router-dom";
+//import contentService from "../services/contentService";
+//import userService from "../services/userService";
 
-import { setText } from "../redux/actions";
+import  createText, {initialize} from "../redux/reducers/contentReducer";
+//import { setText } from "../redux/actions";
 
 
 const CurrentUserPage = () =>{
   const dispatch = useDispatch()
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   let currentUser = null //useSelector(state => state.currentUser.userName)
   const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
   if (loggedUserJSON) {
     currentUser = JSON.parse(loggedUserJSON).data.Username
 
   }
-  useEffect(async () => {
-    const text = await signupService.getOne(currentUser)
-    dispatch(setText(text.notes))
+  useEffect(() => {
+    console.log("usssssssssssssssefeeeeeect")
+    dispatch(initialize(currentUser))
   }, [])
+  const signOut = () => {
+    localStorage.clear()
+    navigate('/')
+    location.reload()
+  }
   const createStory = async (event) =>{
     event.preventDefault()
-    try{
+    event.target.text.value = ("")
+    dispatch(createText({text : event.target.text.value}, currentUser))
+    /* try{
       await  contentService.addText({text:event.target.text.value})
-      const text = await signupService.getOne(currentUser)
+      const text = await userService.getOne(currentUser)
       dispatch(setText(text.notes))
       // navigate(`/${currentUser}`)
       return
     }catch(err){alert(err)}
     event.target.text.value = ("")
-    
+     */
   }
-  const text =  useSelector(state =>state.currentText.text)
-  
+  const text =  useSelector(state =>state.currentText)
+  console.log("text from selector = ", text)
   console.log("textlllll", text);
   const style = {"background": "gray", 
     'padding': 20, 
@@ -49,11 +57,12 @@ const CurrentUserPage = () =>{
   return(
     <>
       <h2>Hello {currentUser}</h2>
+      <button onClick = {signOut}>sign out</button>
       <form onSubmit={createStory}>
         <div>create text <input name = "text"></input></div>
         <button type="submit">post</button>
       </form>
-      {text.map((el, key) => (<div style = {style}key = {key}>{el.text}</div>))}
+      {Array.isArray(text) ? text.map((el, key) => (<div style = {style}key = {key}>{el.text}</div>)) : <></>}
     </>
   )
 }

@@ -1,10 +1,11 @@
 import React from "react"
-import loginService from "../services/loginService"
-import { useState, useEffect } from "react"
+//import loginService from "../services/loginService"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link, useNavigate} from "react-router-dom"
-import {signIn} from '../redux/actions'
-import contentService from '../services/contentService'
+import { Link} from "react-router-dom"
+import {logIn} from '../redux/reducers/userReducer'
+import { useNavigate } from "react-router-dom"
+//import contentService from '../services/contentService'
 
 const LoginForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
@@ -13,36 +14,43 @@ const LoginForm = () =>{
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  let currentUser = null
+  const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
+  if (loggedUserJSON) {
+    currentUser = JSON.parse(loggedUserJSON).data.Username
+  }
   const userNameHandler = event => {
     setLogin(event.target.value)
   }
   const passwordHandler = event => {
     setPassword(event.target.value)
   }
-  const loginHandler = async (event) =>{
+
+  const loginHandler = async (event) =>{ 
     event.preventDefault()
-    try{
-      const user = await  loginService.login({login, password})
-      window.localStorage.setItem(
+   
+    if (currentUser){
+      alert("you are already logged on") 
+    }else{
+      setLogin("")
+      setPassword("")
+      dispatch(logIn({login, password}))
+    }
+    navigate(`/${currentUser}`)
+    /* try{
+      const user =  await loginService.login({login, password})
+      console.log("user iddd", user)
+      if (user){localStorage.setItem(
         'loggedTimebyUser', JSON.stringify(user)
-      ) 
-      /* const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
-      if (loggedUserJSON) {
-        const currUser = JSON.parse(loggedUserJSON)
-	  } */
+      )
       dispatch(signIn(user.data.Username))
+      contentService.setToken(user.data.Token)
       navigate(`/${user.data.Username}`)
-      
-      
-      console.log("fvfssfssssfs tookeeeen ", user.data);
-      return
-    }catch(err){alert(err)}
-    setLogin("")
-    setPassword("")
-  }
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
+      }
+    }catch(err){alert('wrong password or username')}*/
+  } 
+  /* useEffect(() => {
+    const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       // setUser(user)
@@ -51,7 +59,7 @@ const LoginForm = () =>{
       dispatch(signIn(user.data.Username))
      
     }
-  }, []) 
+  }, [])  */
   return(
     <div>
       

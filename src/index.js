@@ -1,18 +1,25 @@
 import React from "react"
 import ReactDOM from 'react-dom'
 import { BrowserRouter  } from "react-router-dom";
-import { createStore, combineReducers } from 'redux'
+//import { createStore, combineReducers } from 'redux'
 import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 
 import       App from './App'
 import userReducer from "./redux/reducers/userReducer";
-import contentReduser from "./redux/reducers/contentReducer"
+import contentReducer from "./redux/reducers/contentReducer"
 
-const reducer = combineReducers({
+/* const reducer = combineReducers({
   currentUser: userReducer,
   currentText: contentReduser
+}) 
+const store = createStore(reducer)*/
+const store = configureStore({
+  reducer:{
+    currentUser: userReducer,
+    currentText: contentReducer
+  }
 })
-const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>

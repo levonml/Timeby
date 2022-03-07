@@ -18,14 +18,17 @@ const App = () => {
   }
   //const dispatch = useDispatch()
   /* let currentUser = null
-  const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
+  const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
+  console.log("ccccccc", typeof loggedUserJSON)
   if (loggedUserJSON) {
     currentUser = JSON.parse(loggedUserJSON).data.Username
-    //dispatch(signIn(user.data.Username))
-  }
-   */
+    console.log("llllllllllldddddddd", currentUser)
+
+    dispatch(signIn(currentUser))
+  } */
+  //dispatch(signIn(currentUser))
   const currentUser = useSelector(state => state.currentUser.userName)
-  console.log("ddddddddddddd", currentUser)
+  console.log("logged user is ", currentUser)
   return(
     <div>
       <Routes suppressNoMatchWarning={true}>
@@ -34,7 +37,6 @@ const App = () => {
             <Header />
             <LoginButton />
             <SignupButton />
-
           </>
         }>
         </Route>
@@ -44,7 +46,7 @@ const App = () => {
       <Routes>
         <Route path = "login" element = {<LoginForm/>}></Route>
         <Route path = "signup" element = {<SignupForm/>}></Route>
-        <Route path = {currentUser} element ={currentUser ? <CurrentUserPage/> : <></>}></Route>
+        <Route path = {`${currentUser}`} element ={currentUser ? <CurrentUserPage/> : <></>}></Route>
       </Routes>
     </div>
    

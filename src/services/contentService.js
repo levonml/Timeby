@@ -1,33 +1,28 @@
 import axios from "axios";
 
-
 const baseUrl = '/api/notes'
 //const baseUrl = "api/notes"
-
 
 const getAll = async () => {
   try{
     const response = await axios.get(baseUrl)
-    console.log('-------------', response.data)
-    //  dispatch(setText(response.data))
-
     return response.data
   }catch(err){console.log(err)}
   
 }
-let token = null
-
-const setToken = newToken => {
-  token = `bearer ${newToken}`
-}
 const addText = async (text) => {
+  let newToken = null
+  const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
+  if (loggedUserJSON) {
+    newToken = JSON.parse(loggedUserJSON).data.Token
+  }
+  newToken = `bearer ${newToken}`
   const config = {
-    headers: { Authorization: token },
+    headers: { Authorization: newToken },
   }
   try{
     const newContent = await axios.post(baseUrl, text, config)
-    console.log("added content isss....", newContent.data.text)
     return newContent.data.text
   }catch(error){alert("problem accured while adding text")}
 }
-export default {addText, setToken, getAll}
+export default {addText,  getAll}

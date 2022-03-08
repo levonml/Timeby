@@ -3,14 +3,15 @@ import {  Routes , Route} from "react-router-dom"
 import { useSelector } from 'react-redux';
 
 import YearPage from  './components/YearPage'
-import LoginButton from './components/LoginButton';
+//import LoginButton from './components/LoginButton';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm'
-import SignupButton from './components/SignupButton'
+//import SignupButton from './components/SignupButton'
 import Header from './components/Header'
 import CurrentUserPage from './components/CurrentUserPage';
 import AllUsers from './components/AllUsers';
-//import { signIn } from './redux/actions';
+import Navbar from './components/Navbar';
+//import UserImage from './components/UserImage';
 
 const App = () => {
   const time = []
@@ -25,9 +26,8 @@ const App = () => {
       <Routes suppressNoMatchWarning={true}>
         <Route path = "/*" element = { 
           <>
+            <Navbar />
             <Header />
-            <LoginButton />
-            <SignupButton />
             <AllUsers />
           </>
         }>
@@ -38,7 +38,8 @@ const App = () => {
       <Routes>
         <Route path = "login" element = {<LoginForm/>}></Route>
         <Route path = "signup" element = {<SignupForm/>}></Route>
-        <Route path = {`${currentUser}`} element ={currentUser ? <CurrentUserPage/> : <></>}></Route>
+        {/* <Route path = {currentUser} element= {<UserImage/>}></Route> */}
+        <Route path = {`${currentUser}/timeline`} element ={currentUser ? <CurrentUserPage/> : <></>}></Route>
       </Routes>
     </div>
    

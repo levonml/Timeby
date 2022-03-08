@@ -24,6 +24,7 @@ const Text = ({el, elId}) => {
     window.confirm('do you want to delete the text?')
     dispatch(deleteOneTextSection(elId))
   }
+  const editText = () => (alert('I appologise but this feature is still under developement, please try again later today or tomorrow: with love: Levon'))
   return (
     <div style = {style} >
       <div>
@@ -31,7 +32,7 @@ const Text = ({el, elId}) => {
       </div>
       <div style = {buttonStyle}>
         <button onClick={deleteOne}>delete</button>
-        <button>edit</button>
+        <button onClick = {editText}>edit</button>
       </div>
       
     </div>

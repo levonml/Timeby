@@ -2,39 +2,34 @@ import React from "react";
 //import Header from "./Header";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import  {createText, initialize} from "../redux/reducers/contentReducer";
 import Text from './Text'
+import { currentUser } from "../halper/halper";
 
 const CurrentUserPage = () =>{
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  let currentUser = null
-  const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
-  if (loggedUserJSON) {
-    currentUser = JSON.parse(loggedUserJSON).data.Username
-
-  }
   useEffect(() => {
-    dispatch(initialize(currentUser))
+    dispatch(initialize(loggedUser))
   }, [])
-  const signOut = () => {
-    localStorage.clear()
-    navigate('/')
-    location.reload()
-  }
+  const loggedUser = currentUser()
   const createStory = async (event) =>{
     event.preventDefault()
-    dispatch(createText({text : event.target.text.value}, currentUser))
+    dispatch(createText({text : event.target.text.value}, loggedUser))
     event.target.text.value = ("")
   }
+  const surprise = () => (alert("HAPPY 8th of MARCH BUBUUUUUUUU, love you, kiss you hug you, muah muah muah,"))
   const text =  useSelector(state =>state.currentText)
   console.log("text from selector = ", text)
  
   return(
     <>
-      <h2>Hello {currentUser}</h2>
-      <button onClick = {signOut}>sign out</button>
+      <h2>Hello {loggedUser}</h2>
+      {loggedUser === "Kuty" ?
+        <div>
+          <h3>You have a special surprise from bubu2</h3>
+          <h4>press the botton to claim it!</h4>
+          <button onClick={surprise}>get your surprise here</button>
+        </div> : <></>}
       <form onSubmit={createStory}>
         <div>create text <input name = "text"></input></div>
         <button type="submit">post</button>

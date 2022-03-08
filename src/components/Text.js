@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { deleteOneTextSection } from "../redux/reducers/contentReducer";
 
-const Text = ({el, key}) => {
+const Text = ({el, elId}) => {
   const style = {"background": "gray", 
     'padding': 20, 
     "marginTop": 5, 
@@ -17,14 +17,15 @@ const Text = ({el, key}) => {
   const buttonStyle = {
     "marginTop":25,
   }
-  const id = useSelector(state => state.currentUser.id)
-  console.log("iddddddddd---", id);
-  const dispatch = useDispatch(deleteOneTextSection(id))
+  //const id = useSelector(state => state.currentUser)
+  console.log("iddddddddd---", elId);
+  const dispatch = useDispatch()
   const deleteOne = () => {
-    dispatch(deleteOne)
+    window.confirm('do you want to delete the text?')
+    dispatch(deleteOneTextSection(elId))
   }
   return (
-    <div style = {style} key = {key}>
+    <div style = {style} >
       <div>
         {el.text}
       </div>

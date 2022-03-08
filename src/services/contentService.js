@@ -27,7 +27,7 @@ const addText = async (text) => {
 }
 const deleteOneTextSection = async (id)=>{
   try{
-    const response = await axios.delete(`baseUrl/${id}`)
+    const response = await axios.delete(`${baseUrl}/${id}`)
     return(response)
   }catch(err){alert(err)}
 }

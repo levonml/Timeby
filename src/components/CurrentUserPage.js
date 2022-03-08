@@ -30,7 +30,6 @@ const CurrentUserPage = () =>{
   }
   const text =  useSelector(state =>state.currentText)
   console.log("text from selector = ", text)
-  console.log("textlllll", text);
  
   return(
     <>
@@ -40,7 +39,7 @@ const CurrentUserPage = () =>{
         <div>create text <input name = "text"></input></div>
         <button type="submit">post</button>
       </form>
-      {Array.isArray(text) ? text.map((el, key) => (<Text el = {el} key = {key}/>)) : <></>}
+      {Array.isArray(text) ? text.map((el) => (<Text el = {el} key = {el.id} elId={el.id}/>)) : <></>}
     </>
   )
 }

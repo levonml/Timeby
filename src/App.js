@@ -9,6 +9,7 @@ import SignupForm from './components/SignupForm'
 import SignupButton from './components/SignupButton'
 import Header from './components/Header'
 import CurrentUserPage from './components/CurrentUserPage';
+import AllUsers from './components/AllUsers';
 //import { signIn } from './redux/actions';
 
 const App = () => {
@@ -16,17 +17,7 @@ const App = () => {
   for(let i = 1920; i <= 2022; i++){
     time.push(i)
   }
-  //const dispatch = useDispatch()
-  /* let currentUser = null
-  const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
-  console.log("ccccccc", typeof loggedUserJSON)
-  if (loggedUserJSON) {
-    currentUser = JSON.parse(loggedUserJSON).data.Username
-    console.log("llllllllllldddddddd", currentUser)
 
-    dispatch(signIn(currentUser))
-  } */
-  //dispatch(signIn(currentUser))
   const currentUser = useSelector(state => state.currentUser.userName)
   console.log("logged user is ", currentUser)
   return(
@@ -37,6 +28,7 @@ const App = () => {
             <Header />
             <LoginButton />
             <SignupButton />
+            <AllUsers />
           </>
         }>
         </Route>

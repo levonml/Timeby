@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SignupButton = () => (
   <div>
-    <Link to = "/signup">Sign up</Link>
+    <button><Link to = "/signup">Sign up</Link></button>
   </div>
 )
 

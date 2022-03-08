@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import contentService from '../../services/contentService'
 import userService from '../../services/userService'
-import  halper from "../../halper/halper";
+import  {currentUser} from "../../halper/halper";
 
 const initialState = {
   text: []
@@ -42,9 +42,7 @@ export const deleteOneTextSection = (id) => {
   return async (dispatch) => {
     try{
       await contentService.deleteOneTextSection(id)
-      //const textList = await contentService.getAll()
-      console.log("lllllddddaaaa", halper.currentUser())
-      dispatch(initialize(halper.currentUser()))
+      dispatch(initialize(currentUser()))
     }catch(err){alert(`deleteOneTextSection ${err}`)}
   }
 }

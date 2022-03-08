@@ -1,6 +1,6 @@
 //import { useSelector } from "react-redux";
 //export const currentUser = useSelector(state => state.currentUser.userName)
-const currentUser =  () => {
+export const currentUser =  () => {
   let user = null
   const loggedUserJSON = window.localStorage.getItem('loggedTimebyUser')
   if (loggedUserJSON) {
@@ -8,4 +8,3 @@ const currentUser =  () => {
   }
   return user
 }
-export default {currentUser}

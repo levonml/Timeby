@@ -2,7 +2,7 @@ import React from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import { currentUser } from "../halper/halper";
-import Timeline from "./Timeline";
+import TimelineButton from "./TimelineButton";
 import HomeButton from "./HomeButton";
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <div style ={nav}>
       {currentUser() ?
-        <Timeline /> : 
+        <TimelineButton /> : 
         <></>}
       <HomeButton />
 

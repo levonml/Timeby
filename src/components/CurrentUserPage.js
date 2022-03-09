@@ -6,15 +6,17 @@ import  {createText, initialize} from "../redux/reducers/contentReducer";
 import Text from './Text'
 import { currentUser } from "../halper/halper";
 
+
 const CurrentUserPage = () =>{
+  const loggedUser = currentUser()
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(initialize(loggedUser))
+    dispatch(initialize())
   }, [])
-  const loggedUser = currentUser()
+  
   const createStory = async (event) =>{
     event.preventDefault()
-    dispatch(createText({text : event.target.text.value}, loggedUser))
+    dispatch(createText({text : event.target.text.value}))
     event.target.text.value = ("")
   }
   const surprise = () => (alert("HAPPY 8th of MARCH BUBUUUUUUUU, love you, kiss you hug you, muah muah muah,"))

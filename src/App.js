@@ -2,7 +2,7 @@ import React from 'react'
 import {  Routes , Route} from "react-router-dom"
 import { useSelector } from 'react-redux';
 
-import YearPage from  './components/YearPage'
+import CurrentUserTimeline from  './components/CurrentUserTimeline'
 //import LoginButton from './components/LoginButton';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm'
@@ -33,12 +33,10 @@ const App = () => {
         }>
         </Route>
       </Routes>
-      
-      <YearPage time = {time}/>
       <Routes>
         <Route path = "login" element = {<LoginForm/>}></Route>
         <Route path = "signup" element = {<SignupForm/>}></Route>
-        {/* <Route path = {currentUser} element= {<UserImage/>}></Route> */}
+        <Route path = {currentUser} element= {<CurrentUserTimeline/>}></Route> 
         <Route path = {`${currentUser}/timeline`} element ={currentUser ? <CurrentUserPage/> : <></>}></Route>
       </Routes>
     </div>

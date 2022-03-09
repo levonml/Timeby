@@ -21,8 +21,8 @@ const Text = ({el, elId}) => {
   console.log("iddddddddd---", elId);
   const dispatch = useDispatch()
   const deleteOne = () => {
-    window.confirm('do you want to delete the text?')
-    dispatch(deleteOneTextSection(elId))
+    if(window.confirm('do you want to delete the text?')){
+      dispatch(deleteOneTextSection(elId))}
   }
   const editText = () => (alert('I appologise but this feature is still under developement, please try again later today or tomorrow: with love: Levon'))
   return (

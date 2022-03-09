@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import {  Link } from "react-router-dom";
+//import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setYear } from "../redux/reducers/yearReducer";
+import { useNavigate } from "react-router-dom";
+//import { currentUser } from "../halper/halper";
+//import CurrentUserPage from "./CurrentUserPage";
 
 // eslint-disable-next-line no-unused-vars
 const Timeline = ({year, yearId}) => {
@@ -15,19 +20,31 @@ const Timeline = ({year, yearId}) => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    cursor: 'pointer'
   }
-  const container = {
-    "textDecoration":"none"
+ 
+  //const loggedUser = currentUser()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleYear = (event) => {
+    event.preventDefault()
+    dispatch(setYear(year))
+    if (year){
+      localStorage.setItem(
+        'currentYear', JSON.stringify(year)
+      )}
+    navigate(`${year}`)
+    //location.reload()
   }
-
   return(
-    <div style = {container}>{year?
-      <h1  style = {element}><Link to={`/${year}`}>
+    <div>
+      <div style = {element} onClick = {handleYear}>
         {year}
-      </Link>
-      </h1>
-      : <></>}
+      </div>
+      {/*     <Routes>
+        <Route path = {`/${loggedUser}/timeline/${year}`} element ={loggedUser ? <CurrentUserPage/> : <>loading...</>}></Route>
+      </Routes> */}
     </div>
   )}
 export default Timeline

@@ -1,4 +1,5 @@
 import axios from "axios";
+//import { useSelector } from "react-redux";
 
 const baseUrl = '/api/notes'
 //const baseUrl = "api/notes"
@@ -10,7 +11,7 @@ const getAll = async () => {
   }catch(err){console.log(err)}
   
 }
-const addText = async (text) => {
+const addText = async (text, currentYear) => {
   let newToken = null
   const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
   if (loggedUserJSON) {
@@ -21,7 +22,7 @@ const addText = async (text) => {
     headers: { Authorization: newToken },
   }
   try{
-    const newContent = await axios.post(baseUrl, text, config)
+    const newContent = await axios.post(`${baseUrl}/${currentYear}`, text, config)
     return newContent.data.text
   }catch(error){alert("problem accured while adding text")}
 }

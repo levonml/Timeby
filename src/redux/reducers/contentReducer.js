@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import contentService from '../../services/contentService'
 import userService from '../../services/userService'
 import  {currentUser} from "../../halper/halper";
+//import { useSelector } from 'react-redux';
 
 const loggedUser = currentUser()
 console.log("logggggeduserrrr", loggedUser)
@@ -22,6 +23,9 @@ const contentSlice = createSlice({
     appendYear(state, action){
       return action.payload
     },
+    setYear(state, action){
+      return action.payload
+    }
   }
 })
 
@@ -33,10 +37,10 @@ export const initialize = () => {
     dispatch(setText(text.notes))
   }
 }
-export const createText = (textObj) => {
+export const createText = (textObj, currentUser) => {
   return async dispatch => {
     try{
-      await contentService.addText(textObj)
+      await contentService.addText(textObj, currentUser)
       const text = await userService.getOne(loggedUser)
       dispatch(appendText(text.notes))
       return

@@ -8,3 +8,11 @@ export const currentUser =  () => {
   }
   return user
 }
+export const currentYear =  () => {
+  let year = null
+  const currentYearJSON =  window.localStorage.getItem('currentYear')
+  if (currentYearJSON) {
+    year =  JSON.parse(currentYearJSON)
+  }
+  return year
+}

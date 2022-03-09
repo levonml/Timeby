@@ -4,6 +4,7 @@ import { currentUser } from "../halper/halper";
 
 
 const Timeline = () => {
+
   return (
     <div>
       <button><Link to={`${currentUser()}/timeline`}>Time line</Link></button>

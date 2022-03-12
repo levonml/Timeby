@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from 'react-redux'
-
+//import { currentUser } from "../halper/halper";
 // eslint-disable-next-line react/prop-types
 const Header = () => {
   const currentUser = useSelector(state => state.currentUser.userName)

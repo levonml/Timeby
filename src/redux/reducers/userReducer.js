@@ -14,7 +14,6 @@ const userSlice = createSlice({
     }
   }
 })
-
 export const {setUsers} = userSlice.actions
 
 export const getAll = () => {

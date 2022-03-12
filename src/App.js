@@ -1,47 +1,46 @@
 import React from 'react'
-import {  Routes , Route} from "react-router-dom"
+import {  Routes , Route, BrowserRouter} from "react-router-dom"
 import { useSelector } from 'react-redux';
-import { currentUser } from './halper/halper';
+//import { currentUser } from './halper/halper';
 
 import CurrentUserTimeline from  './components/CurrentUserTimeline'
-//import LoginButton from './components/LoginButton';
+import CurrentUserHomePage from './components/CurrentUserHomePage';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm'
-//import SignupButton from './components/SignupButton'
 import Header from './components/Header'
-import CurrentUserPage from './components/CurrentUserPage';
+import CurrentUserYearPage from './components/CurrentUserYearPage';
 import AllUsers from './components/AllUsers';
 import Navbar from './components/Navbar';
-//import UserImage from './components/UserImage';
+import NavbarLogged from './components/NavbarLogged';
+//import { currentUser } from './halper/halper';
 
 const App = () => {
-  //const currentUser = useSelector(state => state.currentUser.userName)
-  const loggedUser = currentUser()
+  /*  let loggedUser = null
+  const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
+  if (loggedUserJSON) {
+    loggedUser =  JSON.parse(loggedUserJSON).data.Username
+  } */
+  const loggedUser = useSelector(state => state.currentUser.userName)//currentUser()
   const currentYear = useSelector(state => state.currentYear)
   console.log("currentYear ", currentYear)
   console.log("currentuser ", loggedUser)
   console.log("path is", `${loggedUser}/timeline/${currentYear}`)
   
   return(
-    <div>
-      <Routes suppressNoMatchWarning={true}>
-        <Route path = "/*" element = { 
-          <>
-            <Navbar />
-            <Header />
-            <AllUsers />
-          </>
-        }>
-        </Route>
-      </Routes>
+    <BrowserRouter>
+      <nav>
+        {loggedUser ? <NavbarLogged/> :<Navbar /> }
+        <Header />
+        <AllUsers />
+      </nav>
       <Routes>
-        <Route path = "login" element = {<LoginForm/>}></Route>
-        <Route path = "signup" element = {<SignupForm/>}></Route>
-        <Route path = {`${loggedUser}/timeline`} element ={loggedUser ? <CurrentUserTimeline/> : <></>}></Route>
-        <Route path = {`${loggedUser}/timeline/${currentYear}`} element ={loggedUser ? <CurrentUserPage/> : <>loading...</>}></Route>
+        <Route exact path = "login" element = {<LoginForm/>} />
+        <Route exact path = "signup" element = {<SignupForm/>} />
+        <Route exact path = {`/:userName/home`} element ={<CurrentUserHomePage/>} />
+        <Route path = {`/:userName/timeline/:year`} element ={loggedUser ? <CurrentUserYearPage/> : <>loading...</>} />
+        <Route path = {`/:userName/timeline/*`} element ={loggedUser ? <CurrentUserTimeline/> : <></>}/>
       </Routes>
-    </div>
-   
+    </BrowserRouter>
   )
 }
 

@@ -3,40 +3,40 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link} from "react-router-dom"
 import {logIn} from '../redux/reducers/signinReducer'
-import { useNavigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
+import { currentUser } from "../halper/halper"
+import { initialize } from "../redux/reducers/contentReducer"
 
 const LoginForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
 
+  const loggedUser = currentUser()
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  let currentUser = null
-  const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
-  if (loggedUserJSON) {
-    currentUser = JSON.parse(loggedUserJSON).data.Username
-  }
+ 
   const userNameHandler = event => {
     setLogin(event.target.value)
   }
   const passwordHandler = event => {
     setPassword(event.target.value)
   }
-
+ 
+  // eslint-disable-next-line no-unused-vars
   const loginHandler = async (event) =>{ 
     event.preventDefault()
-   
-    if (currentUser){
+    if (loggedUser){
       alert("you are already logged on") 
-      navigate(`/${currentUser}`)
-
+      navigate(`/${loggedUser}`)
     }else{
       setLogin("")
       setPassword("")
       dispatch(logIn({login, password}))
-      navigate(`/${login}`)
-
+      dispatch(initialize())
+      navigate(`/${login}/home`)
+      //location.reload()
     }
   }
   return(
@@ -47,6 +47,7 @@ const LoginForm = () =>{
         <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
         <button type="submit">Login</button>
         <Link to="/">Back</Link>
+
 
       </form>
     </div>

@@ -1,36 +1,30 @@
 import React from "react";
-//import Header from "./Header";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import  {createText, initialize} from "../redux/reducers/contentReducer";
 import Text from './Text'
-import { currentYear, currentUser} from "../halper/halper";
 
-
-
-const CurrentUserPage = () =>{
-  const thisYear = currentYear()
-  console.log("kkkkkkkkk", thisYear)
-  const loggedUser = currentUser()
+const CurrentUserYearPage = () =>{
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(initialize())
-  }, [])
+
+  let thisYear = useSelector(state => state.currentYear.year)
+  let loggedUser = useSelector(state => state.currentUser.userName)
+  let text=  useSelector(state =>  state.currentText)
   
+  useEffect(() => {
+    dispatch(initialize(loggedUser))
+  }, [loggedUser])
   const createStory = async (event) =>{
     event.preventDefault()
-    dispatch(createText({text : event.target.text.value}, thisYear))
+    dispatch(createText({text : event.target.text.value}, thisYear, loggedUser))
     event.target.text.value = ("")
   }
-  let text =  useSelector(state =>state.currentText)
-  console.log("text from selector = ", text)
 
-  text = text.filter(el => el.year === thisYear)
-  console.log("text from selector after filter = ", text)
-  console.log("year selector = ", currentYear)
+  if (Array.isArray(text)){
+    text = text.filter(el => (el.year === thisYear && el.text.length))
+  }
+  console.log("filtered ", thisYear)
 
-
- 
   return(
     <>
       <h2>Hello {loggedUser}</h2>
@@ -42,4 +36,4 @@ const CurrentUserPage = () =>{
     </>
   )
 }
-export default CurrentUserPage
+export default CurrentUserYearPage

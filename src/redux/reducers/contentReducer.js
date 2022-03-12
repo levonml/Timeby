@@ -1,13 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import contentService from '../../services/contentService'
 import userService from '../../services/userService'
-import  {currentUser} from "../../halper/halper";
-//import { useSelector } from 'react-redux';
+//import  {currentUser} from "../../halper/halper";
 
-const loggedUser = currentUser()
-console.log("logggggeduserrrr", loggedUser)
+
+let loggedUser = null
+const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
+if (loggedUserJSON) {
+  loggedUser =  JSON.parse(loggedUserJSON).data.Username
+}
+let userText = null
+const userTextJSON =  localStorage.getItem('currentText')
+if (userTextJSON) {
+  userText =  JSON.parse(userTextJSON)
+}
 const initialState = {
-  text: [],
+  text: userText,
   year: []
 }
 const contentSlice = createSlice({
@@ -23,53 +31,48 @@ const contentSlice = createSlice({
     appendYear(state, action){
       return action.payload
     },
-    setYear(state, action){
-      return action.payload
-    }
   }
 })
 
 export const {appendText, setText, appendYear} = contentSlice.actions
 
-export const initialize = () => {
-  return async dispatch => {
-    const text = await userService.getOne(loggedUser)
-    dispatch(setText(text.notes))
-  }
-}
-export const createText = (textObj, currentUser) => {
+export const createText = (textObj, thisYear, user) => {
+  console.log("this year from ", thisYear)
   return async dispatch => {
     try{
-      await contentService.addText(textObj, currentUser)
-      const text = await userService.getOne(loggedUser)
-      dispatch(appendText(text.notes))
+      await contentService.addText(textObj, thisYear, user)
+     
+      const text = await userService.getOne(user)
+      console.log("after await text isss", text.notes )
+      dispatch(setText(text.notes))
       return
     }catch(err){alert(err)}
   }
 }
-export const createYear = (yearObj) => {
+export const createYear = (yearObj, user) => {
   return async dispatch => {
     try{
       await contentService.addYear(yearObj)
-      const content = await userService.getOne(loggedUser)
-      console.log("conteeeentd",content.notes)
+      const content = await userService.getOne(user)
+      console.log("loggedUser", loggedUser)
+      console.log("notenotentoe", content)
       dispatch(appendYear(content.notes))
       return
     }catch(err){alert(err)}
   }
 }
-export const deleteOneTextSection = (id) => {
+export const deleteOneTextSection = (id, key) => {
   console.log("id", id)
   return async (dispatch) => {
     try{
-      await contentService.deleteOneTextSection(id)
+      await contentService.deleteOneTextSection(id, key)
       dispatch(initialize(loggedUser))
     }catch(err){alert(`deleteOneTextSection ${err}`)}
   }
 }
-export const initializeTimeline = () => {
+export const initialize = (user) => {
   return async dispatch => {
-    const timeLine = await userService.getOne(loggedUser)
+    const timeLine = await userService.getOne(user)
     dispatch(setText(timeLine.notes))
   }
 }

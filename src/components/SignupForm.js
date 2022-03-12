@@ -39,12 +39,6 @@ const SignupForm = () =>{
     setPassword("")
     setName("")
     setSurname("")
- 
-
-
-    
-    
-    
   }
 
   return(

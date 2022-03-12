@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseUrl = '/api/signup'
-//const baseUrl = "api/signup"
 const signup = async (credentials) => {
   console.log('credentials ', credentials)
   try{

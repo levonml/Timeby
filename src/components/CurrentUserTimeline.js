@@ -1,36 +1,33 @@
 import React from "react";
-//import Header from "./Header";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import  { initializeTimeline, createYear} from "../redux/reducers/contentReducer";
+import  { initialize, createYear} from "../redux/reducers/contentReducer";
 import Timeline from './Timeline'
-import { currentUser } from "../halper/halper";
-
 
 const CurrentUserTimeline = () =>{
 
   const timelineStyle = {
     display: 'flex',
   }
-  const loggedUser = currentUser()
+  let loggedUser = useSelector(state => state.currentUser.userName)
+  const timeline =  useSelector(state =>state.currentText)
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(initializeTimeline())
-  }, [])
+    dispatch(initialize(loggedUser))
+  }, [loggedUser]) 
   
   const addYear = async (event) =>{
     event.preventDefault()
     dispatch(createYear({year : event.target.year.value}, loggedUser))
     event.target.year.value = ("")
   }
-  const timeline =  useSelector(state =>state.currentText)
-  console.log("aaaaaaaaaaaa", timeline);
   let timelineSorted = null
   if (Array.isArray(timeline)){
     const items = [...timeline] 
     timelineSorted = items.sort((a, b) => Number(a.year) - Number(b.year))
   }
+  console.log("timeLine =", timelineSorted);
   return(
     <>
       <form onSubmit={addYear}>

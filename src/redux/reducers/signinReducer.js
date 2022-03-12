@@ -5,7 +5,6 @@ import {currentUser} from "../../halper/halper"
 const initialState = {
   userName: currentUser(),
 } 
-
 const userSlice = createSlice({
   name: 'sigin',
   initialState,

@@ -4,19 +4,13 @@ import userService from '../../services/userService'
 //import  {currentUser} from "../../halper/halper";
 
 
-let loggedUser = null
-const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
-if (loggedUserJSON) {
-  loggedUser =  JSON.parse(loggedUserJSON).data.Username
-}
 let userText = null
 const userTextJSON =  localStorage.getItem('currentText')
 if (userTextJSON) {
   userText =  JSON.parse(userTextJSON)
 }
 const initialState = {
-  text: userText,
-  year: []
+  text: userText
 }
 const contentSlice = createSlice({
   name : 'setText',
@@ -36,11 +30,11 @@ const contentSlice = createSlice({
 
 export const {appendText, setText, appendYear} = contentSlice.actions
 
-export const createText = (textObj, thisYear, user) => {
+export const createText = (textObj, thisYear, user, id) => {
   console.log("this year from ", thisYear)
   return async dispatch => {
     try{
-      await contentService.addText(textObj, thisYear, user)
+      await contentService.addText(textObj, thisYear, user, id)
      
       const text = await userService.getOne(user)
       console.log("after await text isss", text.notes )
@@ -54,26 +48,24 @@ export const createYear = (yearObj, user) => {
     try{
       await contentService.addYear(yearObj)
       const content = await userService.getOne(user)
-      console.log("loggedUser", loggedUser)
-      console.log("notenotentoe", content)
       dispatch(appendYear(content.notes))
       return
     }catch(err){alert(err)}
   }
 }
-export const deleteOneTextSection = (id, key) => {
-  console.log("id", id)
+export const deleteOneTextSection = (yearId, key, user) => {
+  console.log("id", yearId)
   return async (dispatch) => {
     try{
-      await contentService.deleteOneTextSection(id, key)
-      dispatch(initialize(loggedUser))
+      await contentService.deleteOneTextSection(yearId, key)
+      dispatch(initialize(user))
     }catch(err){alert(`deleteOneTextSection ${err}`)}
   }
 }
 export const initialize = (user) => {
   return async dispatch => {
-    const timeLine = await userService.getOne(user)
-    dispatch(setText(timeLine.notes))
+    const res = await userService.getOne(user)
+    dispatch(setText(res.notes))
   }
 }
 export default contentSlice.reducer

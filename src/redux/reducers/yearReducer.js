@@ -5,8 +5,14 @@ const yearJSON =  localStorage.getItem('currentYear')
 if (yearJSON) {
   year =  JSON.parse(yearJSON)
 }
+let yearId = null
+const yearIdJSON =  localStorage.getItem('currentYearId')
+if (yearJSON) {
+  yearId =  JSON.parse(yearIdJSON)
+}
 const initialState = {
-  year: year
+  year: year,
+  yearId: yearId
 }
 const yearSlice = createSlice({
   name : 'setYear',

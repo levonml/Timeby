@@ -9,14 +9,18 @@ const CurrentUserYearPage = () =>{
 
   let thisYear = useSelector(state => state.currentYear.year)
   let loggedUser = useSelector(state => state.currentUser.userName)
+
+  let yearId = useSelector(state => state.currentYear.yearId)
   let text=  useSelector(state =>  state.currentText)
+
   
   useEffect(() => {
     dispatch(initialize(loggedUser))
   }, [loggedUser])
   const createStory = async (event) =>{
     event.preventDefault()
-    dispatch(createText({text : event.target.text.value}, thisYear, loggedUser))
+
+    dispatch(createText({text : event.target.text.value}, thisYear, loggedUser, yearId))
     event.target.text.value = ("")
   }
 

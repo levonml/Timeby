@@ -29,10 +29,14 @@ const Timeline = ({year, yearId}) => {
   const navigate = useNavigate()
   const handleYear = (event) => {
     event.preventDefault()
-    dispatch(setYear({year}))
+    dispatch(setYear({year, yearId}))
     if (year){
       localStorage.setItem(
         'currentYear', JSON.stringify(year)
+      )}
+    if (yearId){
+      localStorage.setItem(
+        'currentYearId', JSON.stringify(yearId)
       )}
     navigate(year)
   }

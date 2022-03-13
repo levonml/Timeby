@@ -9,7 +9,7 @@ const getAll = async () => {
   }catch(err){console.log(err)}
   
 }
-const addText = async (text, currentYear, user) => {
+const addText = async (text, currentYear, user, id) => {
   let newToken = null
   const loggedUserJSON = localStorage.getItem('loggedTimebyUser')
   if (loggedUserJSON) {
@@ -22,7 +22,7 @@ const addText = async (text, currentYear, user) => {
 
 
   try{
-    const newContent = await axios.put(`${baseUrl}/${user}/${currentYear}`, text, config)
+    const newContent = await axios.put(`${baseUrl}/addtext/${id}/${user}/${currentYear}`, text, config)
     console.log('newContent.data.text', newContent.data.text)
     return newContent.data.text
   }catch(error){alert("problem accured while adding text")}
@@ -44,9 +44,9 @@ const addYear = async (year) => {
     return newYear.data.year
   }catch(error){alert("problem accured while adding text")}
 }
-const deleteOneTextSection = async (id, key)=>{
+const deleteOneTextSection = async (yearId, key)=>{
   try{
-    const response = await axios.put(`${baseUrl}/${id}/${key}`)
+    const response = await axios.put(`${baseUrl}/removetext/${yearId}/${key}`)
     return(response)
   }catch(err){alert(err)}
 }

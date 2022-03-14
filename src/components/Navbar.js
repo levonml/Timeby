@@ -1,19 +1,22 @@
 import React from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
-//import TimelineButton from "./TimelineButton";
-//import HomeButton from "./HomeButton";
-//import { useSelector } from "react-redux";
+import Header from "./Header";
+import navStyle from "./style/navStyle";
+
 const Navbar = () => {
- 
-  //const loggedUser = useSelector(state =>state.currentUser)
   const nav = {
-    "display":"flex"
+    display:"flex",
   }
   return (
     <div style ={nav}>
-      <LoginButton />
-      <SignupButton />
+      <div style = {navStyle.logo}>
+        <Header />
+      </div>
+      <div style = {navStyle.navRight}>
+        <LoginButton />
+        <SignupButton />
+      </div>
     </div>
   )
 }

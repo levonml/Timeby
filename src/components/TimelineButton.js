@@ -1,21 +1,31 @@
 import React from "react";
 import { Link} from "react-router-dom";
-//import { currentUser } from "../halper/halper";
-//import { useSelector } from "react-redux";
-
+import { useState } from "react";
+import navStyle from "./style/navStyle";
 
 const Timeline = () => {
-  //const loggedUser = useSelector(state =>state.currentUser)
+  let [bg, setBg] = useState("none")
+  
+  const style ={
+    padding: '1em',
+    background:`${bg}`,
+    border: 'none',
+  }
+  
   let user = null
   const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
   if (loggedUserJSON) {
     user =  JSON.parse(loggedUserJSON).data.Username
-    console.log("lewkfkjfqnfqkj", user)
   }
   return (
-    <div>
+    <div >
       {user ?
-        <button><Link to={`/${user}/timeline`}>Time line</Link></button> :
+        <button style ={style}
+          onMouseEnter={() => setBg(navStyle.buttonHover)}
+          onMouseLeave={() => setBg('none')}
+        >
+          <Link to={`/${user}/timeline`} style = {navStyle.linkStyle}>Time line
+          </Link></button> :
         <></>}
      
     </div> 

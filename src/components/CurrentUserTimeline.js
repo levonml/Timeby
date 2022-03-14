@@ -9,6 +9,10 @@ const CurrentUserTimeline = () =>{
   const timelineStyle = {
     display: 'flex',
   }
+  const timelineContainer = {
+    width: 700
+
+  }
   let loggedUser = useSelector(state => state.currentUser.userName)
   const timeline =  useSelector(state =>state.currentText)
 
@@ -34,8 +38,10 @@ const CurrentUserTimeline = () =>{
         <div>Add a year <input name = "year"></input></div>
         <button type="submit">add</button>
       </form>
-      <div style = {timelineStyle}>
-        {timelineSorted ? timelineSorted.map((el) => (<Timeline year = {el.year} key = {el.id} yearId={el.id}/>)) : <></>}
+      <div style = {timelineContainer}>
+        <div style = {timelineStyle}>
+          {timelineSorted ? timelineSorted.map((el) => (<Timeline year = {el.year} key = {el.id} yearId={el.id}/>)) : <></>}
+        </div>
       </div>
     </>
   )

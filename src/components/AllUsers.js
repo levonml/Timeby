@@ -4,7 +4,10 @@ import { getAll } from "../redux/reducers/userReducer";
 
 
 const AllUsers = () => {
-
+  const allUsers = {
+    position: 'absolute',
+    right: '5em'
+  }
   const [showUsers, setShowUsers] = useState(false)
   const dispatch = useDispatch()
 
@@ -16,8 +19,8 @@ const AllUsers = () => {
   const userList = useSelector(state => state.allUsers.users )
   console.log("userlist from selector", userList);
   return (
-    <div>
-      <button onClick = {handleUsers}>{buttonText}</button>
+    <div  style = {allUsers}>
+      <button onClick = {handleUsers} >{buttonText}</button>
       {Array.isArray(userList) && showUsers ? userList.map((user) => <div key = {user.id}>{user.name}</div>) : <></>}
     </div>
   )

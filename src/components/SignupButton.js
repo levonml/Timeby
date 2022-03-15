@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 //import { useSelector } from "react-redux";
 import navStyle from "./style/navStyle";
-import './stylesheet.css'
+import './stylesheets/navbar.css'
 
 
 const SignupButton = () => {

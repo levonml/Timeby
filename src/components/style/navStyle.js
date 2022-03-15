@@ -12,7 +12,7 @@ const navRight = {
 }
 const logo = {
   flexGrow: '1',
-  alignSelf: 'center',
+  //alignSelf: 'center',
   marginLeft: '1em'
 }
 export default {linkStyle, buttonHover, navRight, logo}

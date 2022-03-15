@@ -6,6 +6,7 @@ import {logIn} from '../redux/reducers/signinReducer'
 import { useNavigate} from "react-router-dom"
 import { currentUser } from "../halper/halper"
 import { initialize } from "../redux/reducers/contentReducer"
+import './stylesheets/navbar.css'
 
 const LoginForm = () =>{
   const style = {"marginTop": 200, "marginLeft": 500 }
@@ -40,15 +41,12 @@ const LoginForm = () =>{
     }
   }
   return(
-    <div>
-      
+    <div >
       <form style = {style} onSubmit = {loginHandler}>
         <div>login<input type="text" value={login} onChange={userNameHandler}></input></div>
         <div>password<input type="password" value={password} onChange = {passwordHandler}></input></div>
         <button type="submit">Login</button>
         <Link to="/">Back</Link>
-
-
       </form>
     </div>
   )

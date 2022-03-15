@@ -1,15 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from "react"
-import './stylesheet.css'
-const Burger = ({setDowndrop, downdrop}) => {
+import { useDispatch, useSelector } from "react-redux"
+import { setDropDown } from "../redux/reducers/navReducer"
+import './stylesheets/navbar.css'
+const Burger = () => {
   // const style = {
   //visibility: 'hidden',
   //opacity: 0,
     
   // }
-  const downDrop = () => setDowndrop(!downdrop)
+  const dispatch = useDispatch()
+  const dropDown = useSelector(state => state.dropDown)
+  const dropdownHandle = () => {
+    localStorage.setItem('dropDown', !dropDown)
+    dispatch(setDropDown(!dropDown))
+  }
   return (
-    <button className = 'burger' onClick={downDrop}>menu</button>
+    <button className = 'burger' onClick={dropdownHandle}>menu</button>
   )
 }
 export default Burger

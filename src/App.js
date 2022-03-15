@@ -1,7 +1,7 @@
 import React from 'react'
 import {  Routes , Route, BrowserRouter} from "react-router-dom"
 import { useSelector } from 'react-redux';
-import './components/stylesheet.css'
+import './components/stylesheets/navbar.css'
 //import { currentUser } from './halper/halper';
 
 import CurrentUserTimeline from  './components/CurrentUserTimeline'

@@ -1,6 +1,7 @@
 import React from 'react'
 import {  Routes , Route, BrowserRouter} from "react-router-dom"
 import { useSelector } from 'react-redux';
+import './components/stylesheet.css'
 //import { currentUser } from './halper/halper';
 
 import CurrentUserTimeline from  './components/CurrentUserTimeline'
@@ -15,13 +16,13 @@ import NavbarLogged from './components/NavbarLogged';
 //import { currentUser } from './halper/halper';
 
 const App = () => {
+  document.body.style.backgroundColor = "#e7f9c5"
   const navBar = {
     background: '#698e5f',
     flexGrow: '1'
   }
   const mainContainer = {
-    marginLeft :'5em',
-    marginRight: '5em'
+    background: '#eaeac9'
   }
   
  
@@ -29,8 +30,8 @@ const App = () => {
   
   return(
     <BrowserRouter>
-      <div style = {mainContainer}>
-        <nav style = {navBar}>
+      <div className='mainContainer' style = {mainContainer}>
+        <nav  style = {navBar}>
           {loggedUser ? <NavbarLogged/> :<Navbar /> }
         </nav>
         <AllUsers/>

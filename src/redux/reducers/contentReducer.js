@@ -64,8 +64,12 @@ export const deleteOneTextSection = (yearId, key, user) => {
 }
 export const initialize = (user) => {
   return async dispatch => {
-    const res = await userService.getOne(user)
-    dispatch(setText(res.notes))
+    try{
+      const res = await userService.getOne(user)
+      console.log('0000000-----------', res)
+      dispatch(setText(res.notes))
+    }catch(err){console.log("getAll error", err)}
+   
   }
 }
 export default contentSlice.reducer

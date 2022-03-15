@@ -2,6 +2,7 @@ import React from "react";
 import { Link} from "react-router-dom";
 import { useState } from "react";
 import navStyle from "./style/navStyle";
+import './stylesheet.css'
 
 const Timeline = () => {
   let [bg, setBg] = useState("none")
@@ -24,7 +25,7 @@ const Timeline = () => {
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
         >
-          <Link to={`/${user}/timeline`} style = {navStyle.linkStyle}>Time line
+          <Link to={`/${user}/timeline`} style = {navStyle.linkStyle} className = 'navButton'>Time line
           </Link></button> :
         <></>}
      

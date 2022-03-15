@@ -1,10 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import Header from "./Header";
 import navStyle from "./style/navStyle";
+import Burger from "./Burger";
 
 const Navbar = () => {
+  const [downdrop, setDowndrop] = useState(false)
   const nav = {
     display:"flex",
   }
@@ -14,8 +17,11 @@ const Navbar = () => {
         <Header />
       </div>
       <div style = {navStyle.navRight}>
-        <LoginButton />
-        <SignupButton />
+        <div className={downdrop ? 'navBar navBarOpen' : 'navBar navBarClose'} style={{display:'flex'}}>
+          <LoginButton />
+          <SignupButton />
+        </div>
+        <Burger setDowndrop = {setDowndrop} downdrop = {downdrop}/>
       </div>
     </div>
   )

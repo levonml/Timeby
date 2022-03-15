@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import navStyle from "./style/navStyle";
+import './stylesheet.css'
 //import { useSelector } from "react-redux";
 
 const LoginButton = () => {
@@ -11,7 +12,6 @@ const LoginButton = () => {
     padding: '1em',
     background: `${bg}`,
     border: 'none',
-    color: 'white'
   }
   let user = null
   const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
@@ -27,17 +27,17 @@ const LoginButton = () => {
   return (
     <div >
       {user  ? 
-        <button onClick={signOut} style = {style}
+        <button className = 'navButton' onClick={signOut} style = {style} 
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
         >
 			Log out
         </button>:
-        <button style={style}
+        <button style={style} 
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
         >
-          <Link to = "/login" style ={navStyle.linkStyle}>
+          <Link to = "/login" style ={navStyle.linkStyle} className = 'navButton'>
 			Login
           </Link>
         </button>

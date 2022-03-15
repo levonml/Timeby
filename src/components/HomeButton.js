@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import navStyle from "./style/navStyle";
+import './stylesheet.css'
 //import { useSelector } from "react-redux";
 const HomeButton = () => {
   let [bg, setBg] = useState("none")
@@ -21,7 +22,7 @@ const HomeButton = () => {
         onMouseEnter={() => setBg(navStyle.buttonHover)}
         onMouseLeave={() => setBg('none')}
       >
-        <Link to = {`${user}/home`} style ={navStyle.linkStyle}>Home</Link>
+        <Link to = {`${user}/home`} style ={navStyle.linkStyle} className = 'navButton'>Home</Link>
       </button>
     </div>
   )}

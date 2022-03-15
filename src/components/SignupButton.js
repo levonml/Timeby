@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 //import { useSelector } from "react-redux";
 import navStyle from "./style/navStyle";
+import './stylesheet.css'
 
 
 const SignupButton = () => {
@@ -26,7 +27,7 @@ const SignupButton = () => {
         <button style = {style}
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
-        ><Link to = "/signup" style = {navStyle.linkStyle}>Sign up</Link></button>
+        ><Link to = "/signup" style = {navStyle.linkStyle} className = 'navButton'>Sign up</Link></button>
       }
     </div>
   )}

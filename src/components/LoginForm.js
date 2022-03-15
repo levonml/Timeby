@@ -34,7 +34,7 @@ const LoginForm = () =>{
       setLogin("")
       setPassword("")
       dispatch(logIn({login, password}))
-      dispatch(initialize())
+      dispatch(initialize(login))
       navigate(`/${login}/home`)
       //location.reload()
     }

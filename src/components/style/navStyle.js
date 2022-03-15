@@ -2,7 +2,7 @@
 
 const linkStyle = {
   textDecoration: 'none',
-  color: 'white'
+ 
 }
 const buttonHover = '#8cad83'
 const navRight = {

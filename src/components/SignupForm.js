@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux"
 import { Link,  useNavigate } from "react-router-dom"
 
 const SignupForm = () =>{
-  const style = {"marginTop": 200, "marginLeft": 500 }
   const [userName, setLogin] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
@@ -42,8 +41,8 @@ const SignupForm = () =>{
   }
 
   return(
-    <div>      
-      <form style = {style} onSubmit = {signupHandler}>
+    <div className = 'mainContainerLoginForm'>      
+      <form  onSubmit = {signupHandler}>
         <div>name<input type="text" value={name} onChange={nameHandler}></input></div>
         <div>surname<input type="text" value={surname} onChange={surnameHandler}></input></div>
         <div>username<input type="text" value={userName} onChange={userNameHandler}></input></div>

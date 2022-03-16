@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setDropDown } from "../redux/reducers/navReducer";
@@ -10,25 +10,27 @@ import './stylesheets/stylesheet.css'
 const SignupButton = () => {
   let [bg, setBg] = useState("none")
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const style ={
-    padding: '1em',
     background: `${bg}`,
-    border: 'none',
-    color: 'white',
-    width: '100%'
   }
-  
+  const signUpHandle = () => {
+    dispatch(setDropDown(!dropDown))
+    navigate('/signup')
+  }
   const dropDown = useSelector(state=>state.dropDown)
   const user = useSelector(state =>state.currentUser.userName)
   return(
     <div>
       {user ?
         <></>:
-        <button style = {style}
+        <button style = {style} className = 'navButton'
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
-          onClick={() => dispatch(setDropDown(!dropDown))}
-        ><Link to = "/signup" style = {navStyle.linkStyle} className = 'navButton'>Sign up</Link></button>
+          onClick={signUpHandle}
+        >
+			Sign up
+        </button>
       }
     </div>
   )}

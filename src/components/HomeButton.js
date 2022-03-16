@@ -10,10 +10,7 @@ const HomeButton = () => {
   let [bg, setBg] = useState("none")
   const dispatch = useDispatch()
   const style ={
-    padding: '1em',
     background: `${bg}`,
-    border: 'none',
-    width: '100%'
   }
   const user = useSelector(state=>state.currentUser.userName)
   const dropDown = useSelector(state=>state.dropDown)

@@ -5,7 +5,7 @@ import { Link} from "react-router-dom"
 import {logIn} from '../redux/reducers/signinReducer'
 import { useNavigate} from "react-router-dom"
 //import { currentUser } from "../halper/halper"
-import { initialize } from "../redux/reducers/contentReducer"
+//import { initialize } from "../redux/reducers/contentReducer"
 import './stylesheets/stylesheet.css'
 
 const LoginForm = () =>{
@@ -17,7 +17,8 @@ const LoginForm = () =>{
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const loggedUser = useSelector(state => state.currentUser.userName)
+  
+  let loggedUser = useSelector(state => state.currentUser.userName)
   const userNameHandler = event => {
     setLogin(event.target.value)
   }
@@ -35,10 +36,11 @@ const LoginForm = () =>{
       setLogin("")
       setPassword("")
       dispatch(logIn({login, password}))
-      dispatch(initialize(login))
-      if (login){navigate(`/${login}/home`)}
-      //location.reload()
+      if (login && password){navigate(`/${login}/home`)}
+
+      //dispatch(initialize(loggedUser))
     }
+    
   }
   return(
     <div className = 'mainContainerLoginForm'>

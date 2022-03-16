@@ -4,31 +4,32 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setDropDown } from "../redux/reducers/navReducer";
 import navStyle from "./style/navStyle";
-import './stylesheets/navbar.css'
+import './stylesheets/stylesheet.css'
 
 const LoginButton = () => {
 
   
   let [bg, setBg] = useState("none")
   const navigate = useNavigate()
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
   const style ={
     padding: '1em',
     background: `${bg}`,
     border: 'none',
+    width: '100%'
   }
   
   const dropDown = useSelector(state=>state.dropDown)
   const user = useSelector(state=>state.currentUser.userName)
 
   const signOut = () => {
-    () => dispatch(setDropDown(!dropDown))
+    dispatch(setDropDown(!dropDown))
     localStorage.clear()
     navigate('/')
     location.reload()
   }
-  const logIn = () => () => dispatch(setDropDown(!dropDown))
+  
   return (
     <div >
       {user  ? 
@@ -41,7 +42,7 @@ const LoginButton = () => {
         <button style={style} 
           onMouseEnter={() => setBg(navStyle.buttonHover)}
           onMouseLeave={() => setBg('none')}
-          onClick={logIn}
+          onClick={() => dispatch(setDropDown(!dropDown))}
         >
           <Link to = "/login" style ={navStyle.linkStyle} className = 'navButton'>
 			Login

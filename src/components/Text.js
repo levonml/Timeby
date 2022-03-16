@@ -24,10 +24,6 @@ const Text = ({el, elId}) => {
   const dispatch = useDispatch()
   const deleteOne = (key) => {
     if(window.confirm('do you want to delete the text?')){
-      console.log("yearId", elId)
-      console.log("key", key)
-      console.log("user", user)
-
       dispatch(deleteOneTextSection(elId, key, user))
     }
   }

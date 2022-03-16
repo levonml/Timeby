@@ -44,10 +44,16 @@ const addYear = async (year) => {
     return newYear.data.year
   }catch(error){alert("problem accured while adding text")}
 }
+const deleteOneYear = async (yearId)=>{
+  try{
+    const response = await axios.delete(`${baseUrl}/deleteOneYear/${yearId}`)
+    return(response)
+  }catch(err){alert(err)}
+}
 const deleteOneTextSection = async (yearId, key)=>{
   try{
     const response = await axios.put(`${baseUrl}/removetext/${yearId}/${key}`)
     return(response)
   }catch(err){alert(err)}
 }
-export default {addText,  getAll, deleteOneTextSection, addYear}
+export default {addText,  getAll, deleteOneYear, deleteOneTextSection, addYear}

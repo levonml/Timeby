@@ -7,6 +7,7 @@ const Header = () => {
     display: 'flex',
   }
   const logo = {
+    marginTop: '0.5em',
     selfAlign:'center',
     fontSize: '1.5em',
     fontFamily: 'roboto',

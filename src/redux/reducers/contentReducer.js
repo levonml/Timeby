@@ -53,8 +53,15 @@ export const createYear = (yearObj, user) => {
     }catch(err){alert(err)}
   }
 }
+export const deleteOneYear = (yearId, user) => {
+  return async (dispatch) => {
+    try{
+      await contentService.deleteOneYear(yearId)
+      dispatch(initialize(user))
+    }catch(err){alert(`deleteOneYear ${err}`)}
+  }
+}
 export const deleteOneTextSection = (yearId, key, user) => {
-  console.log("id", yearId)
   return async (dispatch) => {
     try{
       await contentService.deleteOneTextSection(yearId, key)
@@ -66,7 +73,6 @@ export const initialize = (user) => {
   return async dispatch => {
     try{
       const res = await userService.getOne(user)
-      console.log('0000000-----------', res)
       dispatch(setText(res.notes))
     }catch(err){console.log("getAll error", err)}
    

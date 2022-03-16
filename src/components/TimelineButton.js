@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setDropDown } from "../redux/reducers/navReducer";
 import navStyle from "./style/navStyle";
-import './stylesheets/navbar.css'
+import './stylesheets/stylesheet.css'
 
 const Timeline = () => {
   let [bg, setBg] = useState("none")
@@ -14,6 +14,7 @@ const Timeline = () => {
     padding: '1em',
     background:`${bg}`,
     border: 'none',
+    width: '100%'
   }
   const dropDown = useSelector(state=>state.dropDown)
   const user = useSelector(state=>state.currentUser.userName)

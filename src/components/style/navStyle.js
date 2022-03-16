@@ -8,7 +8,7 @@ const buttonHover = '#8cad83'
 const navRight = {
   display:"flex",
   flexDirection: 'row',
-  margin : '1em'
+  margin : '1em',
 }
 const logo = {
   flexGrow: '1',

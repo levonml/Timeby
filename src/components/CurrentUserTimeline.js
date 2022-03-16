@@ -1,16 +1,20 @@
 import React from "react";
-import { useEffect } from "react";
+import {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import  { initialize, createYear} from "../redux/reducers/contentReducer";
 import Timeline from './Timeline'
 
 const CurrentUserTimeline = () =>{
-
+  // const [year, setYear] = useState("")
   const timelineStyle = {
     display: 'flex',
+    flexDirection: 'row',
+    width: '700px'
   }
   const timelineContainer = {
-    width: 700
+    display: 'flex',
+    overflow: 'scroll',
+    width: '700'
 
   }
   let loggedUser = useSelector(state => state.currentUser.userName)
@@ -23,8 +27,9 @@ const CurrentUserTimeline = () =>{
   
   const addYear = async (event) =>{
     event.preventDefault()
-    dispatch(createYear({year : event.target.year.value}, loggedUser))
-    event.target.year.value = ("")
+    let year = event.target.year.value
+    dispatch(createYear({year : year}, loggedUser))
+    event.target.year.value = ""
   }
   let timelineSorted = null
   if (Array.isArray(timeline)){
@@ -35,7 +40,7 @@ const CurrentUserTimeline = () =>{
   return(
     <>
       <form onSubmit={addYear}>
-        <div>Add a year <input name = "year"></input></div>
+        <div>Add a year <input name = "year" ></input></div>
         <button type="submit">add</button>
       </form>
       <div style = {timelineContainer}>

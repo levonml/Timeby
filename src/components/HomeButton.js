@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDropDown } from "../redux/reducers/navReducer";
 import navStyle from "./style/navStyle";
-import './stylesheets/navbar.css'
+import './stylesheets/stylesheet.css'
 //import { currentUser } from "../halper/halper";
 const HomeButton = () => {
   let [bg, setBg] = useState("none")
@@ -13,6 +13,7 @@ const HomeButton = () => {
     padding: '1em',
     background: `${bg}`,
     border: 'none',
+    width: '100%'
   }
   const user = useSelector(state=>state.currentUser.userName)
   const dropDown = useSelector(state=>state.dropDown)

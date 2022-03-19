@@ -2,14 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import signinReducer from "./reducers/signinReducer";
 import contentReducer from "./reducers/contentReducer"
 import userReducer from "./reducers/userReducer";
-import yearReducer from "./reducers/yearReducer";
+import yearPageReducer from "./reducers/yearPageReducer";
 import navReducer from "./reducers/navReducer";
 
 const store = configureStore({
   reducer:{
     currentUser: signinReducer,
-    currentText: contentReducer,
-    currentYear: yearReducer,
+    currentUserData: contentReducer,
+    currentYearPage: yearPageReducer,
     allUsers : userReducer,
     dropDown: navReducer
   }

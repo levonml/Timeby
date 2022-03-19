@@ -18,16 +18,20 @@ const CurrentUserTimeline = () =>{
 
   }
   let loggedUser = useSelector(state => state.currentUser.userName)
-  const timeline =  useSelector(state =>state.currentText)
-
+  console.log("loggggedUser", loggedUser)
+ 
   const dispatch = useDispatch()
   useEffect(() => {
+  //  console.log("inside useEffect ------------------------")
     dispatch(initialize(loggedUser))
   }, [loggedUser]) 
-  
+  const timeline =  useSelector(state =>state.currentUserData)
+  console.log("timeLine before stort =", timeline);
+
   const addYear = async (event) =>{
     event.preventDefault()
     let year = event.target.year.value
+
     dispatch(createYear({year : year}, loggedUser))
     event.target.year.value = ""
   }
@@ -36,7 +40,7 @@ const CurrentUserTimeline = () =>{
     const items = [...timeline] 
     timelineSorted = items.sort((a, b) => Number(a.year) - Number(b.year))
   }
-  console.log("timeLine =", timelineSorted);
+  //console.log("timeLine =", timelineSorted);
   return(
     <>
       <form onSubmit={addYear}>
@@ -45,7 +49,7 @@ const CurrentUserTimeline = () =>{
       </form>
       <div style = {timelineContainer}>
         <div style = {timelineStyle}>
-          {timelineSorted ? timelineSorted.map((el) => (<Timeline year = {el.year} key = {el.id} yearId={el.id}/>)) : <></>}
+          {timelineSorted ? timelineSorted.map((data) => (<Timeline data = {data} curretnUser = {loggedUser} key = {data._id} />)) : <></>}
         </div>
       </div>
     </>

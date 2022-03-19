@@ -1,17 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import contentService from '../../services/contentService'
-import userService from '../../services/userService'
+//import userService from '../../services/userService'
 //import  {currentUser} from "../../halper/halper";
 
 
-let userText = null
-const userTextJSON =  localStorage.getItem('currentText')
-if (userTextJSON) {
-  userText =  JSON.parse(userTextJSON)
+let userData = []
+const userDataJSON =  localStorage.getItem('currentUserData')
+console.log("currentUserData from reducer", userDataJSON)
+if (userDataJSON) {
+  userData =  JSON.parse(userDataJSON)
 }
-const initialState = {
-  text: userText
-}
+const initialState = {...userData}
+/* {
+    text:[],
+    year:""
+  } */
+
 const contentSlice = createSlice({
   name : 'setText',
   initialState,
@@ -30,25 +34,26 @@ const contentSlice = createSlice({
 
 export const {appendText, setText, appendYear} = contentSlice.actions
 
-export const createText = (textObj, thisYear, user, id) => {
+export const createText = (textObj, thisYear, user) => {
   console.log("this year from ", thisYear)
   return async dispatch => {
     try{
-      await contentService.addText(textObj, thisYear, user, id)
+      const userData  = await contentService.addText(textObj, thisYear, user)
+      console.log("after await res isss", userData )
      
-      const text = await userService.getOne(user)
-      console.log("after await text isss", text.notes )
-      dispatch(setText(text.notes))
+      // const text = await contentService.getOne(user)
+      // console.log("after await text isss", text?.notes )
+      dispatch(setText(userData))
       return
     }catch(err){alert(err)}
   }
-}
+} 
 export const createYear = (yearObj, user) => {
   return async dispatch => {
     try{
-      await contentService.addYear(yearObj)
-      const content = await userService.getOne(user)
-      dispatch(appendYear(content.notes))
+      const res = await contentService.addYear(user, yearObj)
+      console.log("res from reducer", res?.content)
+      dispatch(appendYear(res))
       return
     }catch(err){alert(err)}
   }
@@ -72,8 +77,11 @@ export const deleteOneTextSection = (yearId, key, user) => {
 export const initialize = (user) => {
   return async dispatch => {
     try{
-      const res = await userService.getOne(user)
-      dispatch(setText(res.notes))
+    //  console.log("gewfoooooooor, ferrrtttttttt")
+      const res = await contentService.getOne(user)
+     
+      // console.log("ferrrtttttttt", res)
+      dispatch(setText(res))
     }catch(err){console.log("getAll error", err)}
    
   }

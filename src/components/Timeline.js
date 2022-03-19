@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+//import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setYear } from "../redux/reducers/yearReducer";
+import { setYearPage } from "../redux/reducers/yearPageReducer";
 import { useNavigate } from "react-router-dom";
 //import { currentUser } from "../halper/halper";
-//import CurrentUserPage from "./CurrentUserPage";
+//import CurrentUserYearPage from "./CurrentUserYearPage";
 
 
 // eslint-disable-next-line no-unused-vars
-const Timeline = ({year, yearId}) => {
+const Timeline = ({data, currentUser}) => {
+  // const [show, setShow] = useState(false)
   //const loggedUser = currentUser()
   const element = {
     margin: 10, 
@@ -29,22 +31,21 @@ const Timeline = ({year, yearId}) => {
   const navigate = useNavigate()
   const handleYear = (event) => {
     event.preventDefault()
-    dispatch(setYear({year, yearId}))
-    if (year){
+    dispatch(setYearPage(data))
+    if (data){
       localStorage.setItem(
-        'currentYear', JSON.stringify(year)
+        'currentYearPage', JSON.stringify(data)
       )}
-    if (yearId){
-      localStorage.setItem(
-        'currentYearId', JSON.stringify(yearId)
-      )}
-    navigate(year)
+    navigate(data.year)
+    // setShow(true)
   }
+  //console.log("data.year0000000", data)
   return(
     <div>
       <div style = {element} onClick = {handleYear}>
-        {year}
+        {data.year}
       </div>
+      {/*  {show? <CurrentUserYearPage /> : <></>} */}
       
     </div>
   )}

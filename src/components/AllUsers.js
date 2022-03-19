@@ -16,18 +16,19 @@ const AllUsers = () => {
     backgroundColor: '#505349',
     color: 'white',
     fontSize: '0.7em',
-    padding: '0.4em'
+    padding: '0.4em',
   } 
   
   const allUsersList =   
     {
-      position: 'relative',
-      top: '1.5em',
+      position: 'fixed',
+      top: '3.5em',
       padding: '0.5em',
       background: 'grey',
       width: '6em',
       transition: '0.5s',
-      transform: showUsers ? 'translateX(0em)' : 'translateX(-15em)'
+      transform: showUsers ? 'translateX(0em)' : 'translateX(-15em)',
+      
     }
    
 

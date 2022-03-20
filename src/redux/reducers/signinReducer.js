@@ -1,50 +1,48 @@
-import { createSlice } from '@reduxjs/toolkit'
-import loginService from '../../services/loginService'
-//import contentService from '../../services/contentService'
+import { createSlice } from "@reduxjs/toolkit";
+import loginService from "../../services/loginService";
 
-let user = null
-let id = null
-let token = null
-const loggedUserJSON =  localStorage.getItem('loggedTimebyUser')
+let user = null;
+let id = null;
+let token = null;
+const loggedUserJSON = localStorage.getItem("loggedTimebyUser");
 if (loggedUserJSON) {
-  user =  JSON.parse(loggedUserJSON).data.Username
-  id = JSON.parse(loggedUserJSON).data.id
-  token = JSON.parse(loggedUserJSON).data.Token
+  user = JSON.parse(loggedUserJSON).data.Username;
+  id = JSON.parse(loggedUserJSON).data.id;
+  token = JSON.parse(loggedUserJSON).data.Token;
 }
 const initialState = {
   userName: user,
   id: id,
-  token: token
-} 
+  token: token,
+};
 const userSlice = createSlice({
-  name: 'sigin',
+  name: "sigin",
   initialState,
   reducers: {
-    signIn(state, action){
+    signIn(state, action) {
       return {
-        userName : action.payload.Username,
-        id : action.payload.id,
-        token: action.payload.Token }
-    }
-  }
-})
+        userName: action.payload.Username,
+        id: action.payload.id,
+        token: action.payload.Token,
+      };
+    },
+  },
+});
 
-export const {signIn} = userSlice.actions
+export const { signIn } = userSlice.actions;
 
-export const logIn = ({login, password}) => {
-  return async dispatch => {
-    try{
-      const user =  await loginService.login({login, password})
-      console.log("oooooooo", user)
-      if (user){
-        //contentService.setToken(user.data.Token)
-        localStorage.setItem(
-          'loggedTimebyUser', JSON.stringify(user)
-        )
-        dispatch(signIn(user.data))
+export const logIn = ({ login, password }) => {
+  return async (dispatch) => {
+    try {
+      const user = await loginService.login({ login, password });
+      if (user) {
+        localStorage.setItem("loggedTimebyUser", JSON.stringify(user));
+        dispatch(signIn(user.data));
       }
-    }catch(err){alert('wrong password or username')}
-  }
-}
+    } catch (err) {
+      alert("wrong password or username");
+    }
+  };
+};
 
-export default userSlice.reducer
+export default userSlice.reducer;

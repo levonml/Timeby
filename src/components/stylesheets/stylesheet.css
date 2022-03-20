@@ -1,99 +1,98 @@
-
+/* html, body, #root{
+	height: 100%
+} */
 .burger {
-	visibility:hidden;
+  visibility: hidden;
 }
-.mainContainer{
-	margin: 0 5em
+.mainContainer {
+  margin: 0 5em;
 }
-.navButton{
-	color:aliceblue;
-	border:none;
+.navButton {
+  color: aliceblue;
+  border: none;
 }
 /* loginForm */
 
 .mainContainerLoginForm {
-	width: 50%;
-	margin: 2em auto;
-	padding: 5em 0.3em;
-	display:flex;
-	border-radius: 1em;
-	background-color: white
-	}
-.mainContainerLoginForm form{
-	width:70%;
-	margin: auto;
-	display:flex;
-	flex-direction: column;
-	gap: 1em;
-	color: rgb(41, 38, 38)
+  width: 50%;
+  margin: 2em auto;
+  padding: 5em 0.3em;
+  display: flex;
+  border-radius: 1em;
+  background-color: white;
 }
-.mainContainerLoginForm form div{
-	display: flex;
-	flex-direction: column;
-	
-	gap:0.4em
+.mainContainerLoginForm form {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: rgb(41, 38, 38);
 }
-.mainContainerLoginForm form div input{
-	width: 100%;
-	border: none;
-	padding: 0.5em;
-	background: none;
-	outline: none;
-	border-bottom: 0.1em solid rgb(34, 32, 32);
-	
+.mainContainerLoginForm form div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.4em;
+}
+.mainContainerLoginForm form div input {
+  width: 100%;
+  border: none;
+  padding: 0.5em;
+  background: none;
+  outline: none;
+  border-bottom: 0.1em solid rgb(34, 32, 32);
 }
 
-.mainContainerLoginForm form button{
-	background-color: #505349;
-	border-radius: 0.3em;
-	border:none;
-	padding: 0.5em;
-	font-size: medium;
-	color: white
-	
+.mainContainerLoginForm form button {
+  background-color: #505349;
+  border-radius: 0.3em;
+  border: none;
+  padding: 0.5em;
+  font-size: medium;
+  color: white;
 }
 /* UserYearPage */
-.yearTextInput{
-	width: auto;
-	height: auto;
-	padding: 0.5em
+.yearTextInput {
+  width: auto;
+  height: auto;
+  padding: 0.5em;
 }
 @media only screen and (max-width: 640px) {
-	.navButton{
-		color:rgb(61, 59, 59);
-		border: none;
-		padding: 1em;
-		width: 100%;
-	
-	}
-	.burger{
-		visibility:visible;
-		background: none;
-		border:none
-	}
-	.mainContainer{
-		margin: 0
-	}
-	  .navBar{
-		  position:fixed;
-		  top:-100vh;
-		  left:0;
-		  display:flex;
-		  flex-direction: column;
-		  gap:0.5rem;
-		  background-color:#e7f9c5;
-		  width:100%;
-		  z-index: 10;
-	  }
-	  .navBarOpen{
-		transition: 0.5s;
-		transform: translateY(108vh) 
-	  }
-	   .navBarClose{
-		  transition: 0.5s;
-		  transform: translateY(-108vh)
-	}
-	.mainContainerLoginForm {
-		width: 90%;
-	}
+  .navButton {
+    color: rgb(61, 59, 59);
+    border: none;
+    padding: 1em;
+    width: 100%;
+  }
+  .burger {
+    visibility: visible;
+    background: none;
+    border: none;
+  }
+  .mainContainer {
+    margin: 0;
+  }
+  .navBar {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #e7f9c5;
+    width: 100%;
+    z-index: 10;
+  }
+  .navBarOpen {
+    transition: 0.5s;
+    transform: translateY(108vh);
+  }
+  .navBarClose {
+    transition: 0.5s;
+    transform: translateY(-108vh);
+  }
+  .mainContainerLoginForm {
+    width: 90%;
+  }
 }

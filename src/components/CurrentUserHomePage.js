@@ -5,6 +5,6 @@ const CurrentUserHomePage = () => {
     <>
       <h1>welcome home</h1>
     </>
-  )
-}
-export default CurrentUserHomePage
+  );
+};
+export default CurrentUserHomePage;

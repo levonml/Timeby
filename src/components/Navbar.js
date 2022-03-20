@@ -8,23 +8,26 @@ import Burger from "./Burger";
 
 const Navbar = () => {
   const nav = {
-    display:"flex",
-  }
-  const dropDown = useSelector(state => state.dropDown)
+    display: "flex",
+  };
+  const dropDown = useSelector((state) => state.dropDown);
 
   return (
-    <div style ={nav}>
-      <div style = {navStyle.logo}>
+    <div style={nav}>
+      <div style={navStyle.logo}>
         <Header />
       </div>
-      <div style = {navStyle.navRight}>
-        <div className={dropDown ? 'navBar navBarClose' : 'navBar navBarOpen'} style={{display:'flex'}}>
+      <div style={navStyle.navRight}>
+        <div
+          className={dropDown ? "navBar navBarClose" : "navBar navBarOpen"}
+          style={{ display: "flex" }}
+        >
           <LoginButton />
           <SignupButton />
         </div>
         <Burger />
       </div>
     </div>
-  )
-}
-export default Navbar
+  );
+};
+export default Navbar;

@@ -21,7 +21,7 @@ const CurrentUserTimeline = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initialize(loggedUser));
-  }, [loggedUser]);
+  }, [loggedUser, timeline]);
   const addYear = async (event) => {
     event.preventDefault();
     let year = event.target.year.value;
@@ -51,7 +51,7 @@ const CurrentUserTimeline = () => {
           {timelineSorted ? (
             timelineSorted.map((data, key) =>
               data ? (
-                <Timeline data={data} curretnUser={loggedUser} key={data._id} />
+                <Timeline data={data} key={data._id} />
               ) : (
                 <div key={key}></div>
               )

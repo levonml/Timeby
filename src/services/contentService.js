@@ -53,12 +53,7 @@ const addYear = async (userName, year) => {
     headers: { Authorization: token },
   };
   try {
-    const newYear = await axios.put(
-      `${baseUrl}/addYear/${userName}`,
-      year,
-      config
-    );
-    return newYear.data.content;
+    await axios.put(`${baseUrl}/addYear/${userName}`, year, config);
   } catch (error) {
     alert(error);
   }

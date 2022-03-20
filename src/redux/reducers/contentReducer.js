@@ -37,10 +37,11 @@ export const createText = (textObj, thisYear, user) => {
   };
 };
 export const createYear = (yearObj, user) => {
-  return async (dispatch) => {
+  return async () => {
     try {
-      const res = await contentService.addYear(user, yearObj);
-      dispatch(appendYear(res));
+      await contentService.addYear(user, yearObj);
+      initialize(user);
+      //dispatch(appendYear(res));
       return;
     } catch (err) {
       alert(err);
@@ -48,20 +49,20 @@ export const createYear = (yearObj, user) => {
   };
 };
 export const deleteOneYear = (year, user) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       await contentService.deleteOneYear(year, user);
-      dispatch(initialize(user));
+      initialize(user);
     } catch (err) {
       alert(`deleteOneYear ${err}`);
     }
   };
 };
 export const deleteOneTextSection = (user, year, index) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       await contentService.deleteOneTextSection(user, year, index);
-      dispatch(initialize(user));
+      initialize(user);
     } catch (err) {
       alert(`deleteOneTextSection ${err}`);
     }

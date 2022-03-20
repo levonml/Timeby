@@ -1,8 +1,8 @@
 import React from "react";
-import signupService from "../services/signupService";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+import signupService from "../services/signupService";
 
 const SignupForm = () => {
   const [userName, setLogin] = useState("");
@@ -10,7 +10,6 @@ const SignupForm = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userNameHandler = (event) => {
     setLogin(event.target.value);
@@ -24,29 +23,28 @@ const SignupForm = () => {
   const surnameHandler = (event) => {
     setSurname(event.target.value);
   };
+
   const signupHandler = async (event) => {
     event.preventDefault();
     try {
-      const user = await signupService.signup({
+      const res = await signupService.signup({
         userName,
         password,
         name,
         surname,
       });
-      dispatch({ type: "LOGGED", payload: user.data.User });
-      console.log("loggged in user onnistu", user.data);
-      alert("you have signed up successfully");
-      navigate("/");
-      return;
+      if (res) {
+        alert("you have signed up successfully");
+        navigate("/login");
+      }
     } catch (err) {
-      alert(err);
+      alert("username is already taken");
     }
     setLogin("");
     setPassword("");
     setName("");
     setSurname("");
   };
-
   return (
     <div className="mainContainerLoginForm">
       <form onSubmit={signupHandler}>

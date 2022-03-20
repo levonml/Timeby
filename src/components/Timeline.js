@@ -1,16 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-//import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setYearPage } from "../redux/reducers/yearPageReducer";
 import { useNavigate } from "react-router-dom";
-//import { currentUser } from "../halper/halper";
-//import CurrentUserYearPage from "./CurrentUserYearPage";
-
-// eslint-disable-next-line no-unused-vars
-const Timeline = ({ data, currentUser }) => {
-  // const [show, setShow] = useState(false)
-  //const loggedUser = currentUser()
+const Timeline = ({ data }) => {
   const element = {
     margin: 10,
     width: "3rem",

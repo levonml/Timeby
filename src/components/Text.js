@@ -7,7 +7,8 @@ import { deleteOneTextSection } from "../redux/reducers/contentReducer";
 
 const Text = ({text}) => {
   const user = useSelector(state=>state.currentUser.userName)
-
+  const year = useSelector(state => state.currentYearPage.year)
+  console.log("year from selector", year)
   //el.text.map((text) => console.log('dddddddddddd', text));
   const style = {"background": "gray", 
     'padding': 20, 
@@ -22,22 +23,23 @@ const Text = ({text}) => {
     "marginTop":25,
   }
   const dispatch = useDispatch()
-  const deleteOne = (key) => {
+  const deleteOne = (index) => {
     if(window.confirm('do you want to delete the text?')){
-      dispatch(deleteOneTextSection(key, user))
+      dispatch(deleteOneTextSection(user, year, index))
     }
   }
   console.log("text from text", text)
   const editText = () => (alert('I appologise but this feature is still under developement, please try again later today or tomorrow: with love: Levon'))
   return (
-    text.map((article, key) => {
+    text.map((article, index) => {
+      //console.log("the key is ", index)
       return(
-        <div style = {style} key = {key} >
+        <div style = {style} key = {index} >
           <div>
             <div>{article}</div>
           </div>
           <div style = {buttonStyle}>
-            <button onClick={() => deleteOne(key)}>delete</button>
+            <button onClick={() => deleteOne(index)}>delete</button>
             <button onClick = {editText}>edit</button>
           </div>
         </div>)

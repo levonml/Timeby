@@ -63,9 +63,10 @@ const deleteOneYear = async (year)=>{
     return(response)
   }catch(err){alert(err)}
 }
-const deleteOneTextSection = async (yearId, key)=>{
+const deleteOneTextSection = async (user, year, index)=>{
   try{
-    const response = await axios.put(`${baseUrl}/removetext/${yearId}/${key}`)
+    const response = await axios.put(`${baseUrl}/removetext/${user}/${year}/${index}`)
+    console.log("deleted tex", response)
     return(response)
   }catch(err){alert(err)}
 }

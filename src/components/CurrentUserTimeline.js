@@ -38,7 +38,7 @@ const CurrentUserTimeline = () =>{
   let timelineSorted = null
   if (Array.isArray(timeline)){
     const items = [...timeline] 
-    timelineSorted = items.sort((a, b) => Number(a.year) - Number(b.year))
+    timelineSorted = items.sort((a, b) => Number(a?.year) - Number(b?.year))
   }
   //console.log("timeLine =", timelineSorted);
   return(
@@ -49,7 +49,7 @@ const CurrentUserTimeline = () =>{
       </form>
       <div style = {timelineContainer}>
         <div style = {timelineStyle}>
-          {timelineSorted ? timelineSorted.map((data) => (<Timeline data = {data} curretnUser = {loggedUser} key = {data._id} />)) : <></>}
+          {timelineSorted ? timelineSorted.map((data, key) => ( data ? <Timeline data = {data} curretnUser = {loggedUser} key = {data._id} />: <div key ={key}></div>)) : <></>}
         </div>
       </div>
     </>

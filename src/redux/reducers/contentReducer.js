@@ -10,7 +10,7 @@ console.log("currentUserData from reducer", userDataJSON)
 if (userDataJSON) {
   userData =  JSON.parse(userDataJSON)
 }
-const initialState = {...userData}
+const initialState = userData
 /* {
     text:[],
     year:""
@@ -52,7 +52,7 @@ export const createYear = (yearObj, user) => {
   return async dispatch => {
     try{
       const res = await contentService.addYear(user, yearObj)
-      console.log("res from reducer", res?.content)
+      console.log("res from reducer", res)
       dispatch(appendYear(res))
       return
     }catch(err){alert(err)}
@@ -66,10 +66,10 @@ export const deleteOneYear = (yearId, user) => {
     }catch(err){alert(`deleteOneYear ${err}`)}
   }
 }
-export const deleteOneTextSection = (yearId, key, user) => {
+export const deleteOneTextSection = (user, year, index) => {
   return async (dispatch) => {
     try{
-      await contentService.deleteOneTextSection(yearId, key)
+      await contentService.deleteOneTextSection(user, year, index)
       dispatch(initialize(user))
     }catch(err){alert(`deleteOneTextSection ${err}`)}
   }

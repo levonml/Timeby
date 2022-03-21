@@ -8,7 +8,7 @@ import CurrentUserHomePage from "./components/CurrentUserHomePage";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 import CurrentUserYearPage from "./components/CurrentUserYearPage";
-import AllUsers from "./components/AllUsers";
+import AllUsersList from "./components/AllUsersList";
 import Navbar from "./components/Navbar";
 import NavbarLogged from "./components/NavbarLogged";
 
@@ -36,7 +36,7 @@ const App = () => {
       <div style={mainContainer}>
         <nav style={navBar}>{loggedUser ? <NavbarLogged /> : <Navbar />}</nav>
         <div className="mainContainer">
-          <AllUsers />
+          <AllUsersList />
           <Routes>
             <Route exact path="login" element={<LoginForm />} />
             <Route exact path="signup" element={<SignupForm />} />

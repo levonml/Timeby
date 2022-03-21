@@ -7,6 +7,7 @@ import Header from "./Header";
 import navStyle from "./style/navStyle";
 import Burger from "./Burger";
 import { useSelector } from "react-redux";
+import AllUsers from "./AllUsers";
 
 const NavbarLogged = () => {
   const nav = {
@@ -26,6 +27,7 @@ const NavbarLogged = () => {
         >
           <HomeButton />
           <TimelineButton />
+          <AllUsers />
           <LoginButton />
           <SignupButton />
         </div>

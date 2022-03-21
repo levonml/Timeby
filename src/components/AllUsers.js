@@ -1,54 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { setShowUsers } from "../redux/reducers/showUserReducer";
+import { setDropDown } from "../redux/reducers/navReducer";
 import { getAll } from "../redux/reducers/userReducer";
+import navStyle from "./style/navStyle";
 
 const AllUsers = () => {
-  const [showUsers, setShowUsers] = useState(false);
+  const [fontSize, setFontSize] = useState(false);
   const dispatch = useDispatch();
-
-  const allUsers = {
-    position: "absolute",
-    right: "4em",
+  const style = {
     background: "none",
-    border: "none",
-    backgroundColor: "#505349",
-    color: "white",
-    fontSize: "0.7em",
-    padding: "0.4em",
-    zIndex: "5",
+    transform: `scale(${fontSize})`,
   };
 
-  const allUsersList = {
-    position: "fixed",
-    top: "3.5em",
-    padding: "0.5em",
-    background: "grey",
-    width: "6em",
-    transition: "0.5s",
-    transform: showUsers ? "translateX(0em)" : "translateX(-15em)",
-    zIndex: "5",
-  };
-
-  const buttonText = showUsers ? "hide" : "Show who is in";
+  const dropDown = useSelector((state) => state.dropDown);
+  const showUsers = useSelector((state) => state.showUsers);
+  console.log("sow users", showUsers);
+  //const buttonText = showUsers ? "hide" : "Show who is in";
   const handleUsers = (event) => {
     event.preventDefault();
-    setShowUsers(!showUsers);
+    localStorage.setItem("showUsers", !showUsers);
+    dispatch(setShowUsers(!showUsers));
+    dispatch(setDropDown(!dropDown));
     dispatch(getAll());
   };
-  const userList = useSelector((state) => state.allUsers.users);
   return (
     <div>
-      <button onClick={handleUsers} style={allUsers}>
-        {buttonText}
+      <button
+        onClick={handleUsers}
+        style={style}
+        className="navButton"
+        onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+        onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
+      >
+        Show all users
       </button>
-      <div style={allUsersList}>
-        <div style={{ color: "white", fontFamily: "arial" }}>ALL USERS</div>
-        {Array.isArray(userList) ? (
-          userList.map((user) => <div key={user.id}>{user.name}</div>)
-        ) : (
-          <></>
-        )}
-      </div>
     </div>
   );
 };

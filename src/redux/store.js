@@ -4,6 +4,7 @@ import contentReducer from "./reducers/contentReducer";
 import userReducer from "./reducers/userReducer";
 import yearPageReducer from "./reducers/yearPageReducer";
 import navReducer from "./reducers/navReducer";
+import showUserReducer from "./reducers/showUserReducer";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     currentYearPage: yearPageReducer,
     allUsers: userReducer,
     dropDown: navReducer,
+    showUsers: showUserReducer,
   },
 });
 export default store;

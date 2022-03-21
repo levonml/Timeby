@@ -34,6 +34,8 @@ const CurrentUserTimeline = () => {
     const yearExists = timeline.find((el) => el.year === year);
     if (yearExists) {
       alert(`year ${year} already exists`);
+    } else if (!year) {
+      alert("field is empty");
     } else {
       dispatch(createYear({ year: year }, loggedUser));
     }
@@ -48,8 +50,11 @@ const CurrentUserTimeline = () => {
     <div style={mainContainer}>
       <form onSubmit={addYear}>
         <div style={{ color: "white", fontFamily: "arial" }}>
-          Add a year <input name="year"></input>
-          <button type="submit">add</button>
+          Add a year{" "}
+          <input name="year" className="timelineAddYearInput"></input>
+          <button className="timelineAddYearButton" type="submit">
+            add
+          </button>
         </div>
       </form>
       <div style={timelineContainer}>

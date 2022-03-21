@@ -26,7 +26,7 @@ const CurrentUserYearPage = () => {
   const thisYear = thisYearData.year;
   useEffect(() => {
     dispatch(initialize(loggedUser));
-  }, [loggedUser]);
+  }, [loggedUser, userData]);
   const createStory = async (event) => {
     event.preventDefault();
     dispatch(
@@ -57,7 +57,12 @@ const CurrentUserYearPage = () => {
       </h2>
       <form onSubmit={createStory}>
         <div>
-          create text <br />
+          <div
+            style={{ color: "white", fontFamily: "arial", padding: "0.2em" }}
+          >
+            create text{" "}
+          </div>{" "}
+          <br />
           <textarea className="yearTextInput" name="text"></textarea>
         </div>
         <button type="submit">post</button>

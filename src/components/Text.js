@@ -15,7 +15,7 @@ const Text = ({ text }) => {
     color: "white",
     opacity: "2",
     text: "center",
-    width: 400,
+    width: "auto",
   };
   const buttonStyle = {
     marginTop: 25,

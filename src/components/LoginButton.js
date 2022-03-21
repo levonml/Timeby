@@ -7,12 +7,13 @@ import navStyle from "./style/navStyle";
 import "./stylesheets/stylesheet.css";
 
 const LoginButton = () => {
-  let [bg, setBg] = useState("none");
+  let [fontSize, setFontSize] = useState(navStyle.buttonLeave);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const style = {
-    background: `${bg}`,
+    background: "none",
+    transform: `scale(${fontSize})`,
   };
 
   const dropDown = useSelector((state) => state.dropDown);
@@ -35,8 +36,8 @@ const LoginButton = () => {
           className="navButton"
           onClick={signOutHandle}
           style={style}
-          onMouseEnter={() => setBg(navStyle.buttonHover)}
-          onMouseLeave={() => setBg("none")}
+          onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+          onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
         >
           Log out
         </button>
@@ -44,8 +45,8 @@ const LoginButton = () => {
         <button
           style={style}
           className="navButton"
-          onMouseEnter={() => setBg(navStyle.buttonHover)}
-          onMouseLeave={() => setBg("none")}
+          onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+          onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
           onClick={logInHandle}
         >
           Login

@@ -1,7 +1,9 @@
 const linkStyle = {
   textDecoration: "none",
 };
-const buttonHover = "#8cad83";
+const buttonHover = "1.2";
+const buttonLeave = "1";
+
 const navRight = {
   display: "flex",
   flexDirection: "row",
@@ -11,4 +13,4 @@ const logo = {
   flexGrow: "1",
   marginLeft: "1em",
 };
-export default { linkStyle, buttonHover, navRight, logo };
+export default { linkStyle, buttonHover, navRight, logo, buttonLeave };

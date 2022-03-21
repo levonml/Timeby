@@ -8,7 +8,14 @@ import {
   deleteOneYear,
 } from "../redux/reducers/contentReducer";
 import Text from "./Text";
-
+const mainContainer = {
+  height: "100vh",
+  position: "relative",
+  top: "2em",
+  background: "black",
+  opacity: "0.7",
+  padding: "2em",
+};
 const CurrentUserYearPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,8 +51,10 @@ const CurrentUserYearPage = () => {
     text = text[0].text;
   }
   return (
-    <div style={{ height: "100vh", position: "relative" }}>
-      <h2>It is {thisYear} year now</h2>
+    <div style={mainContainer}>
+      <h2 style={{ color: "white", fontFamily: "arial", opacity: "1" }}>
+        It is {thisYear} year now
+      </h2>
       <form onSubmit={createStory}>
         <div>
           create text <br />

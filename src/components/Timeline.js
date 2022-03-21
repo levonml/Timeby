@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 const Timeline = ({ data }) => {
   const element = {
     margin: 10,
-    width: "3rem",
-    height: "3rem",
-    background: "lightGray",
+    width: "2rem",
+    height: "2rem",
     padding: 20,
     borderRadius: 100,
     fontSize: "1.2rem",
@@ -17,6 +16,9 @@ const Timeline = ({ data }) => {
     alignItems: "center",
     textDecoration: "none",
     cursor: "pointer",
+    background: "black",
+    color: "white",
+    opacity: "0.5",
   };
 
   const dispatch = useDispatch();

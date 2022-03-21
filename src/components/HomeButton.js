@@ -7,11 +7,12 @@ import navStyle from "./style/navStyle";
 import "./stylesheets/stylesheet.css";
 //import { currentUser } from "../halper/halper";
 const HomeButton = () => {
-  let [bg, setBg] = useState("none");
+  let [fontSize, setFontSize] = useState(navStyle.buttonLeave);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const style = {
-    background: `${bg}`,
+    background: "none",
+    transform: `scale(${fontSize})`,
   };
   const user = useSelector((state) => state.currentUser.userName);
   const dropDown = useSelector((state) => state.dropDown);
@@ -24,8 +25,8 @@ const HomeButton = () => {
       <button
         style={style}
         className="navButton"
-        onMouseEnter={() => setBg(navStyle.buttonHover)}
-        onMouseLeave={() => setBg("none")}
+        onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+        onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
         onClick={homeHandle}
       >
         Home

@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 const NavbarLogged = () => {
   const nav = {
     display: "flex",
+    backgroundColor: "none",
   };
   const dropDown = useSelector((state) => state.dropDown);
   return (
@@ -21,7 +22,7 @@ const NavbarLogged = () => {
       <div style={navStyle.navRight}>
         <div
           className={dropDown ? "navBar navBarClose" : "navBar navBarOpen"}
-          style={{ display: "flex" }}
+          style={{ display: "flex", gap: "1.5em" }}
         >
           <HomeButton />
           <TimelineButton />

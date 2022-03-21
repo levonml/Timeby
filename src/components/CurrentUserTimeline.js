@@ -3,16 +3,22 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { initialize, createYear } from "../redux/reducers/contentReducer";
 import Timeline from "./Timeline";
+import "./stylesheets/stylesheet.css";
 
 const CurrentUserTimeline = () => {
+  const mainContainer = {
+    marginTop: "2em",
+  };
   const timelineStyle = {
     display: "flex",
     flexDirection: "row",
+    overflow: "scroll",
     width: "700px",
   };
   const timelineContainer = {
     display: "flex",
-    overflow: "scroll",
+
+    border: "none",
     width: "700",
   };
   let loggedUser = useSelector((state) => state.currentUser.userName);
@@ -39,15 +45,15 @@ const CurrentUserTimeline = () => {
     timelineSorted = items.sort((a, b) => Number(a?.year) - Number(b?.year));
   }
   return (
-    <>
+    <div style={mainContainer}>
       <form onSubmit={addYear}>
-        <div>
+        <div style={{ color: "white", fontFamily: "arial" }}>
           Add a year <input name="year"></input>
+          <button type="submit">add</button>
         </div>
-        <button type="submit">add</button>
       </form>
       <div style={timelineContainer}>
-        <div style={timelineStyle}>
+        <div style={timelineStyle} className="scroller">
           {timelineSorted ? (
             timelineSorted.map((data, key) =>
               data ? (
@@ -61,7 +67,7 @@ const CurrentUserTimeline = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default CurrentUserTimeline;

@@ -13,6 +13,7 @@ const Text = ({ text }) => {
     marginLeft: "auto",
     marginRight: "auto",
     color: "white",
+    opacity: "2",
     text: "center",
     width: 400,
   };

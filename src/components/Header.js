@@ -11,7 +11,7 @@ const Header = () => {
     fontSize: "1.5em",
     fontFamily: "roboto",
     fontWeight: "600",
-    color: "#54524f",
+    color: "white",
   };
   const user = {
     alignSelf: "center",

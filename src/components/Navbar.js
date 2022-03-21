@@ -9,6 +9,8 @@ import Burger from "./Burger";
 const Navbar = () => {
   const nav = {
     display: "flex",
+    backgroundColor: "none",
+    boxSizing: "borderBox",
   };
   const dropDown = useSelector((state) => state.dropDown);
 
@@ -20,7 +22,7 @@ const Navbar = () => {
       <div style={navStyle.navRight}>
         <div
           className={dropDown ? "navBar navBarClose" : "navBar navBarOpen"}
-          style={{ display: "flex" }}
+          style={{ display: "flex", gap: "1.5em" }}
         >
           <LoginButton />
           <SignupButton />

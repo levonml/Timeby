@@ -7,11 +7,12 @@ import navStyle from "./style/navStyle";
 import "./stylesheets/stylesheet.css";
 
 const SignupButton = () => {
-  let [bg, setBg] = useState("none");
+  let [fontSize, setFontSize] = useState(navStyle.buttonLeave);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const style = {
-    background: `${bg}`,
+    background: "none",
+    transform: `scale(${fontSize})`,
   };
   const signUpHandle = () => {
     dispatch(setDropDown(!dropDown));
@@ -27,8 +28,8 @@ const SignupButton = () => {
         <button
           style={style}
           className="navButton"
-          onMouseEnter={() => setBg(navStyle.buttonHover)}
-          onMouseLeave={() => setBg("none")}
+          onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+          onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
           onClick={signUpHandle}
         >
           Sign up

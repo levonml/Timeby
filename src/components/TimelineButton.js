@@ -8,11 +8,12 @@ import navStyle from "./style/navStyle";
 import "./stylesheets/stylesheet.css";
 
 const Timeline = () => {
-  let [bg, setBg] = useState("none");
+  let [fontSize, setFontSize] = useState(navStyle.buttonLeave);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const style = {
-    background: `${bg}`,
+    background: "none",
+    transform: `scale(${fontSize})`,
   };
   const dropDown = useSelector((state) => state.dropDown);
   const user = useSelector((state) => state.currentUser.userName);
@@ -26,8 +27,8 @@ const Timeline = () => {
         <button
           style={style}
           className="navButton"
-          onMouseEnter={() => setBg(navStyle.buttonHover)}
-          onMouseLeave={() => setBg("none")}
+          onMouseEnter={() => setFontSize(navStyle.buttonHover)}
+          onMouseLeave={() => setFontSize(navStyle.buttonLeave)}
           onClick={timeLineHandle}
         >
           Time line

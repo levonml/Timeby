@@ -15,6 +15,7 @@ const AllUsers = () => {
     color: "white",
     fontSize: "0.7em",
     padding: "0.4em",
+    zIndex: "5",
   };
 
   const allUsersList = {

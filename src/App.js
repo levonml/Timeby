@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./components/stylesheets/stylesheet.css";
-
+import Image from "./img/timeBySpace.jpg";
 import CurrentUserTimeline from "./components/CurrentUserTimeline";
 import CurrentUserHomePage from "./components/CurrentUserHomePage";
 import LoginForm from "./components/LoginForm";
@@ -13,38 +13,48 @@ import Navbar from "./components/Navbar";
 import NavbarLogged from "./components/NavbarLogged";
 
 const App = () => {
-  document.body.style.backgroundColor = "#e7f9c5";
+  //document.body.style.backgroundColor = "#e7f9c5";
+
+  document.body.style.background = `url(${Image})`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundPosition = "center center";
+  document.body.style.backgroundAttachment = "fixed";
+
   const navBar = {
-    background: "#698e5f",
+    background: "none",
     flexGrow: "1",
   };
   const mainContainer = {
-    background: "#eaeac9",
+    //background: "#eaeac9",
+    // backgroundImage: "url(./timeBySpace.jpg)",
   };
 
   const loggedUser = useSelector((state) => state.currentUser.userName);
   return (
     <BrowserRouter>
-      <div className="mainContainer" style={mainContainer}>
+      <div style={mainContainer}>
         <nav style={navBar}>{loggedUser ? <NavbarLogged /> : <Navbar />}</nav>
-        <AllUsers />
-        <Routes>
-          <Route exact path="login" element={<LoginForm />} />
-          <Route exact path="signup" element={<SignupForm />} />
-          <Route
-            exact
-            path={`/:userName/home`}
-            element={<CurrentUserHomePage />}
-          />
-          <Route
-            path={`/:userName/timeline/:year`}
-            element={loggedUser ? <CurrentUserYearPage /> : <>loading...</>}
-          />
-          <Route
-            path={`/:userName/timeline/*`}
-            element={loggedUser ? <CurrentUserTimeline /> : <></>}
-          />
-        </Routes>
+        <div className="mainContainer">
+          <AllUsers />
+          <Routes>
+            <Route exact path="login" element={<LoginForm />} />
+            <Route exact path="signup" element={<SignupForm />} />
+            <Route
+              exact
+              path={`/:userName/home`}
+              element={<CurrentUserHomePage />}
+            />
+            <Route
+              path={`/:userName/timeline/:year`}
+              element={loggedUser ? <CurrentUserYearPage /> : <>loading...</>}
+            />
+            <Route
+              path={`/:userName/timeline/*`}
+              element={loggedUser ? <CurrentUserTimeline /> : <></>}
+            />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

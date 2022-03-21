@@ -6,7 +6,7 @@ const signup = async (credentials) => {
     const user = await axios.post(baseUrl, credentials);
     return user;
   } catch (error) {
-    alert("userName is already takeny");
+    alert("selected username is already taken");
   }
 };
 export default { signup };

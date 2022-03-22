@@ -22,8 +22,10 @@ const App = () => {
   document.body.style.backgroundAttachment = "fixed";
 
   const navBar = {
-    background: "none",
+    background: "white",
+    opacity: "0.9",
     flexGrow: "1",
+    padding: "0.3em 0",
   };
   const mainContainer = {
     //background: "#eaeac9",
@@ -34,7 +36,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <div style={mainContainer}>
-        <nav style={navBar}>{loggedUser ? <NavbarLogged /> : <Navbar />}</nav>
+        <div style={{ position: "relative", zIndex: "2" }}>
+          <nav style={navBar}>{loggedUser ? <NavbarLogged /> : <Navbar />}</nav>
+        </div>
         <div className="mainContainer">
           <AllUsersList />
           <Routes>

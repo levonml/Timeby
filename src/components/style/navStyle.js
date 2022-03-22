@@ -8,9 +8,7 @@ const navRight = {
   display: "flex",
   flexDirection: "row",
   margin: "1em",
+  alignSelf: "center",
 };
-const logo = {
-  flexGrow: "1",
-  marginLeft: "1em",
-};
-export default { linkStyle, buttonHover, navRight, logo, buttonLeave };
+
+export default { linkStyle, buttonHover, navRight, buttonLeave };

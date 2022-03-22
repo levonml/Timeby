@@ -9,15 +9,16 @@ import Burger from "./Burger";
 import { useSelector } from "react-redux";
 import AllUsers from "./AllUsers";
 
+import "./stylesheets/stylesheet.css";
+
 const NavbarLogged = () => {
   const nav = {
     display: "flex",
-    backgroundColor: "none",
   };
   const dropDown = useSelector((state) => state.dropDown);
   return (
     <div style={nav}>
-      <div style={navStyle.logo}>
+      <div className="logo">
         <Header />
       </div>
       <div style={navStyle.navRight}>

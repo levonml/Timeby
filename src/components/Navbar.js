@@ -6,17 +6,17 @@ import Header from "./Header";
 import navStyle from "./style/navStyle";
 import Burger from "./Burger";
 
+import "./stylesheets/stylesheet.css";
+
 const Navbar = () => {
   const nav = {
     display: "flex",
-    backgroundColor: "none",
-    boxSizing: "borderBox",
   };
   const dropDown = useSelector((state) => state.dropDown);
 
   return (
     <div style={nav}>
-      <div style={navStyle.logo}>
+      <div className="logo">
         <Header />
       </div>
       <div style={navStyle.navRight}>

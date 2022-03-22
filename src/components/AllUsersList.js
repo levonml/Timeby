@@ -14,7 +14,6 @@ const AllUsersList = () => {
     right: "0",
     padding: "1em",
     paddingRight: "2em",
-
     background: "rgb(46, 33, 80)",
     opacity: "0.9",
     width: "6em",
@@ -31,7 +30,7 @@ const AllUsersList = () => {
     padding: "0.4em 1em",
     borderRadius: "0.4em",
     marginTop: "0.5em",
-    zIndex: "5",
+    // zIndex: "5",
     transform: `scale(${hideButton})`,
   };
   const dispatch = useDispatch();

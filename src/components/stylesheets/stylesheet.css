@@ -1,15 +1,23 @@
-/* html, body, #root{
-	height: 100%
-} */
+* {
+  margin: 0;
+  padding: 0;
+}
 .burger {
   visibility: hidden;
 }
 .mainContainer {
   margin: 0 5em;
 }
+/*nav bar*/
+.logo {
+  flex-grow: 1;
+  margin-left: 1em;
+}
 .navButton {
-  color: rgb(250, 240, 255);
+  color: rgb(20, 20, 20);
   border: none;
+  font-weight: 700;
+  box-sizing: border-box;
 }
 /* loginForm */
 
@@ -111,11 +119,11 @@
     visibility: visible;
     background: none;
     border: none;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 1.2em;
   }
   .mainContainer {
-    margin: 0;
+    margin: 0 1em;
   }
   .navBar {
     position: fixed;
@@ -124,14 +132,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background-color: #504269;
+    background-color: #2d2638;
     width: 100%;
-    z-index: 10;
-    opacity: 0.95;
   }
   .navBarOpen {
     transition: 0.5s;
-    transform: translateY(108vh);
+    transform: translateY(110vh);
   }
   .navBarClose {
     transition: 0.5s;
@@ -139,5 +145,8 @@
   }
   .mainContainerLoginForm {
     width: 90%;
+  }
+  .logo {
+    margin-left: 0;
   }
 }

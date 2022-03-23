@@ -7,7 +7,7 @@ const UserImage = () => {
       {selectedImage && (
         <div>
           <img
-            alt="not fount"
+            alt="not found"
             width={"250px"}
             src={URL.createObjectURL(selectedImage)}
           />

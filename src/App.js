@@ -11,6 +11,7 @@ import CurrentUserYearPage from "./components/CurrentUserYearPage";
 import AllUsersList from "./components/AllUsersList";
 import Navbar from "./components/Navbar";
 import NavbarLogged from "./components/NavbarLogged";
+import FrontPage from "./components/FrontPage";
 
 const App = () => {
   //document.body.style.backgroundColor = "#e7f9c5";
@@ -22,7 +23,7 @@ const App = () => {
   document.body.style.backgroundAttachment = "fixed";
 
   const navBar = {
-    background: "white",
+    background: "none",
     opacity: "0.9",
     flexGrow: "1",
     padding: "0.3em 0",
@@ -42,6 +43,7 @@ const App = () => {
         <div className="mainContainer">
           <AllUsersList />
           <Routes>
+            <Route exact path="/" element={<FrontPage />} />
             <Route exact path="login" element={<LoginForm />} />
             <Route exact path="signup" element={<SignupForm />} />
             <Route

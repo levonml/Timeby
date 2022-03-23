@@ -18,7 +18,7 @@ const NavbarLogged = () => {
   const dropDown = useSelector((state) => state.dropDown);
   return (
     <div style={nav}>
-      <div className="logo">
+      <div className="logoContainer">
         <Header />
       </div>
       <div style={navStyle.navRight}>

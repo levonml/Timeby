@@ -9,16 +9,63 @@
   margin: 0 5em;
 }
 /*nav bar*/
-.logo {
+.logoContainer {
   flex-grow: 1;
   margin-left: 1em;
 }
+.logo {
+  background: white;
+  border-radius: 5em;
+  padding: 0.8em;
+}
+
 .navButton {
-  color: rgb(20, 20, 20);
+  color: rgb(235, 232, 232);
   border: none;
   font-weight: 700;
   box-sizing: border-box;
 }
+/*front page*/
+@keyframes transitionIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.frontPageMainContainer {
+  color: rgb(205, 199, 212);
+  font-family: cursive;
+  font-size: 2em;
+  margin: 2em auto;
+}
+.frontPageMainContainer .one {
+  animation: transitionIn 2.5s;
+}
+.frontPageMainContainer .two {
+  animation: transitionIn 4.5s;
+}
+.frontPageMainContainer .three {
+  animation: transitionIn 6.5s;
+}
+.signupButtonFromFrontPage button {
+  padding: 0.8em 2em;
+  background: rgb(245, 215, 48);
+  opacity: 0.9;
+  border: none;
+  border-radius: 1em;
+  color: rgb(56, 59, 209);
+  font-size: 1.5em;
+  font-weight: 800;
+  font-family: "Courier New", Courier, monospace;
+  margin-right: 3em;
+}
+.signupButtonFromFrontPage button:hover {
+  transform: scale(1.1);
+  color: aliceblue;
+}
+
 /* loginForm */
 
 .mainContainerLoginForm {
@@ -110,7 +157,7 @@
 }
 @media only screen and (max-width: 640px) {
   .navButton {
-    color: rgb(255, 255, 255);
+    color: rgb(235, 232, 232);
     border: none;
     padding: 1em;
     width: 100%;
@@ -119,7 +166,7 @@
     visibility: visible;
     background: none;
     border: none;
-    color: rgb(0, 0, 0);
+    color: rgb(235, 232, 232);
     font-size: 1.2em;
   }
   .mainContainer {
@@ -132,7 +179,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background-color: #2d2638;
+    background-color: #3d1085;
     width: 100%;
   }
   .navBarOpen {
@@ -146,7 +193,19 @@
   .mainContainerLoginForm {
     width: 90%;
   }
+  .frontPageMainContainer {
+    margin-top: 1em;
+    font-size: 1.8em;
+  }
+  .signupButtonFromFrontPage button {
+    padding: 0.6em 1.6em;
+    font-size: 1.3em;
+    margin-right: 2em;
+  }
   .logo {
-    margin-left: 0;
+    padding: 0.6em;
+  }
+  .logoContainer {
+    margin-left: 0.5em;
   }
 }

@@ -16,13 +16,20 @@ const Header = () => {
     fontSize: "1em",
     fontWeight: "600",
     fontFamily: "roboto",
-    color: "#371f49",
+    color: "#fffb32",
+    opacity: "0.7",
   };
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser.userName);
   return (
-    <div style={main} onClick={() => navigate("/home")}>
-      <img src={logo} alt="logo cat" width="80em" height="80em" />
+    <div style={main} onClick={() => navigate(`${currentUser}/home`)}>
+      <img
+        src={logo}
+        alt="logo cat"
+        width="80em"
+        height="80em"
+        className="logo"
+      />
       <div style={user}> {currentUser}</div>
     </div>
   );

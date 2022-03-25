@@ -13,6 +13,7 @@ const Header = () => {
   const user = {
     alignSelf: "center",
     marginLeft: "0.8em",
+    marginRight: "0.8em",
     fontSize: "1em",
     fontWeight: "600",
     fontFamily: "roboto",

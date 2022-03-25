@@ -25,7 +25,7 @@ const App = () => {
   const navBar = {
     background: "none",
     opacity: "0.9",
-    flexGrow: "1",
+    //flexGrow: "1",
     padding: "0.3em 0",
   };
   const mainContainer = {

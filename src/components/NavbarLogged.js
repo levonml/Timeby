@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import AllUsers from "./AllUsers";
 
 import "./stylesheets/stylesheet.css";
+import SearchBar from "./SearchBar";
 
 const NavbarLogged = () => {
   const nav = {
@@ -21,11 +22,14 @@ const NavbarLogged = () => {
       <div className="logoContainer">
         <Header />
       </div>
+
       <div style={navStyle.navRight}>
         <div
           className={dropDown ? "navBar navBarClose" : "navBar navBarOpen"}
           style={{ display: "flex", gap: "1.5em" }}
         >
+          <SearchBar />
+
           <HomeButton />
           <TimelineButton />
           <AllUsers />

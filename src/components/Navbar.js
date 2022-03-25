@@ -2,22 +2,19 @@ import React from "react";
 import { useSelector } from "react-redux";
 import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
-import Header from "./Header";
+import Logo from "./Logo";
 import navStyle from "./style/navStyle";
 import Burger from "./Burger";
 
 import "./stylesheets/stylesheet.css";
 
 const Navbar = () => {
-  const nav = {
-    display: "flex",
-  };
   const dropDown = useSelector((state) => state.dropDown);
 
   return (
-    <div style={nav}>
+    <div className="header">
       <div className="logoContainer">
-        <Header />
+        <Logo />
       </div>
       <div style={navStyle.navRight}>
         <div

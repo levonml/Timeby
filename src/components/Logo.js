@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../img/timebyLogo.png";
 
-const Header = () => {
+const Logo = () => {
   const main = {
     display: "flex",
     cursor: "pointer",
@@ -35,4 +35,4 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+export default Logo;

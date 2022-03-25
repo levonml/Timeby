@@ -3,7 +3,7 @@ import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import TimelineButton from "./TimelineButton";
 import HomeButton from "./HomeButton";
-import Header from "./Header";
+import Logo from "./Logo";
 import navStyle from "./style/navStyle";
 import Burger from "./Burger";
 import { useSelector } from "react-redux";
@@ -13,16 +13,11 @@ import "./stylesheets/stylesheet.css";
 import SearchBar from "./SearchBar";
 
 const NavbarLogged = () => {
-  const nav = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  };
   const dropDown = useSelector((state) => state.dropDown);
   return (
-    <div style={nav}>
+    <div className="header">
       <div className="logoContainer">
-        <Header />
+        <Logo />
       </div>
       <div>
         <SearchBar />

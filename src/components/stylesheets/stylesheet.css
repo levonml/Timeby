@@ -9,6 +9,11 @@
   margin: 0 5em;
 }
 /*nav bar*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .logoContainer {
   /* flex-grow: 1; */
   margin-left: 1em;

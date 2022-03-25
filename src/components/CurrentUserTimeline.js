@@ -32,7 +32,13 @@ const CurrentUserTimeline = () => {
     event.preventDefault();
     let year = event.target.year.value;
     const yearExists = timeline.find((el) => el.year === year);
-    if (yearExists) {
+    if (isNaN(Number(year))) {
+      alert("the value should be a number");
+    } else if (year[0] === "-" || year[0] === "+") {
+      alert("incurrect value");
+    } else if (year.length > 4 || (year.length === 4 && year[0] > 2)) {
+      alert("value is too big");
+    } else if (yearExists) {
       alert(`year ${year} already exists`);
     } else if (!year) {
       alert("field is empty");

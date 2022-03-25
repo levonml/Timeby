@@ -21,7 +21,7 @@
 .logo {
   background: white;
   border-radius: 5em;
-  padding: 0.8em;
+  padding: 0.3em;
 }
 .searchBarInputContainer {
   /* margin: 0 3e auto 0; */
@@ -36,6 +36,10 @@
 .searchBarInputContainer button {
   background: none;
   border: none;
+  cursor: pointer;
+}
+.searchBarInputContainer button:hover {
+  transform: scale(1.2);
 }
 .searchBarInput {
   background: white;
@@ -230,7 +234,7 @@
     margin-right: 2em;
   }
   .logo {
-    padding: 0.6em;
+    padding: 0.1em;
   }
   .logoContainer {
     margin-left: 0.5em;

@@ -17,7 +17,6 @@ const CurrentUserTimeline = () => {
   };
   const timelineContainer = {
     display: "flex",
-
     border: "none",
     width: "700",
   };
